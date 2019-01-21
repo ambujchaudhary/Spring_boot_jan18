@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ducat</groupId>
+  <artifactId>springMvc</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>SpringMVC</name>
+  <parent>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-parent</artifactId>
+  <version>2.0.1.RELEASE</version>
+  </parent>
+  <dependencies>
+  <dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-web</artifactId>
+  </dependency>
+  <!-- to get the JSP compiled by the embedded jetty server -->
+  <dependency>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-jasper</artifactId>
+    <version>9.0.1</version>
+ </dependency>
+ <!-- On my system, jasper wasn't picking the eclipse jdt compiler
+ hence I need to add this. Try by commenting this on your system. -->
+		<dependency>
+			<groupId>org.eclipse.jdt.core.compiler</groupId>
+			<artifactId>ecj</artifactId>
+			<version>4.6.1</version>
+			<scope>provided</scope>
+		</dependency>
+  </dependencies>
+</project>
