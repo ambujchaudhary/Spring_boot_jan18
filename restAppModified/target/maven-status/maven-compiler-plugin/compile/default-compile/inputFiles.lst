@@ -1,0 +1,7 @@
+/home/neeraj/ducat/boot/restApp/src/main/java/com/ducat/resources/PreviligeController.java
+/home/neeraj/ducat/boot/restApp/src/main/java/com/ducat/RestApplication.java
+/home/neeraj/ducat/boot/restApp/src/main/java/com/ducat/resources/EmpController.java
+/home/neeraj/ducat/boot/restApp/src/main/java/com/ducat/repositories/PreviligeRepository.java
+/home/neeraj/ducat/boot/restApp/src/main/java/com/ducat/repositories/EmpRepository.java
+/home/neeraj/ducat/boot/restApp/src/main/java/com/ducat/entities/Previlige.java
+/home/neeraj/ducat/boot/restApp/src/main/java/com/ducat/entities/Emp.java

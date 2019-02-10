@@ -1,0 +1,7 @@
+com/ducat/resources/PreviligeController.class
+com/ducat/RestApplication.class
+com/ducat/entities/Emp.class
+com/ducat/repositories/PreviligeRepository.class
+com/ducat/resources/EmpController.class
+com/ducat/entities/Previlige.class
+com/ducat/repositories/EmpRepository.class
