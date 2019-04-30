@@ -1,0 +1,13 @@
+<ion-content (click)="hideKeyboard()">
+
+  <zu-login [mobile]="true">
+
+    <!--Button: Login with Facebook-->
+    <div class="full-width mb-24">
+      <button type="button" mat-raised-button color="default" class="button facebook-btn" (click)="loginFacebook()" [disabled]="isBtnDisabled">
+        Login with Facebook
+      </button>
+    </div>
+  </zu-login>
+
+</ion-content>

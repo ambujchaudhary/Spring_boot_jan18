@@ -1,0 +1,181 @@
+<zu-header></zu-header>
+
+<zu-intro-header [background]="2" [title]="'JOB OFFERS MANAGEMENT'"></zu-intro-header>
+
+<section class="flex main-height admin-page-backgroud">
+  <mat-card class="full-width">
+    <mat-card-content class="main-content-padding container">
+      <mat-tab-group class="admin-tabs" [@.disabled]="true">
+
+        <!--All jobs-->
+        <mat-tab label="{{setAllJobsTabLabel()}}">
+
+          <input type="text" class="input-filter" [(ngModel)]="searchJob" *ngIf="adminManagementData?.all?.length > 0">
+
+          <table class="admin-manage-table" *ngIf="adminManagementData?.all.length > 0">
+
+            <thead>
+            <tr class="admin-manage-table__header">
+              <th class="admin-manage-table__header-label">Job name</th>
+              <th class="admin-manage-table__header-label">Total price</th>
+              <th class="admin-manage-table__header-label">Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr class="table-row all-jobs-row" *ngFor="let job of adminManagementData.all | jobsTitle: searchJob"
+                [routerLink]="['/job-management', job.id, 'view']">
+              <td class="main-cell">
+                <div class="main-cell--block">
+                  <div>
+                    <label class="label job-item-title mb-6">{{job?.title}}</label>
+                    <span class="after-line job-item-user">business:
+                      <a class="link-default blue" routerLink="{{getUserPageUrl(job.ownerId)}}" (click)="$event.stopPropagation()">{{job?.ownerFullName}}</a></span>
+                    <span class="job-item-user" *ngIf="job?.shooterFullName">shooter:
+                      <a class="link-default blue" routerLink="{{getUserPageUrl(job.shooterId)}}" (click)="$event.stopPropagation()">{{job?.shooterFullName}}</a></span>
+                  </div>
+
+                </div>
+              </td>
+
+              <td class="align-center">
+                <span class="job-item-price">
+                <svg class="vertical-align-middle" width="18px" height="18px" viewBox="0 0 18 36" version="1.1">
+                <defs></defs>
+                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="icons" transform="translate(-313.000000, -36.000000)" fill="#56A6FF" fill-rule="nonzero">
+                <path
+                    d="M327.494956,46.9154206 C327.296869,45.2520745 326.776497,44.0187717 325.944845,43.2132085 C325.110048,42.409949 323.909734,42.0060155 322.344688,42.0060155 C320.71204,42.0060155 319.44491,42.4153246 318.530722,43.2354786 C317.614961,44.0525608 317.155902,45.1952473 317.155902,46.6581625 C317.155902,47.9598114 317.583519,49.0003626 318.423032,49.7706009 C319.253111,50.530856 320.672737,51.164402 322.68741,51.6858295 C325.490502,52.4046161 327.577492,53.4413277 328.957815,54.7982679 C330.319272,56.1421532 331,57.8193221 331,59.8274707 C331,62.2633589 330.157343,64.2569167 328.463383,65.8150558 C327.173457,67.0122656 325.573824,67.745643 323.67313,68.0105804 L323.67313,72 L320.4267,72 L320.4267,68.0282429 C318.541727,67.7356599 316.880781,66.9331684 315.445434,65.6161608 C313.824577,64.1102413 313.017293,62.4077305 313,60.5047889 L313.045592,59.8267028 L316.207127,59.8267028 C316.236211,61.6098466 316.751867,62.9852173 317.756452,63.9574223 C318.760252,64.9280915 320.179091,65.4164978 322.007468,65.4164978 C323.835844,65.4164978 325.262544,64.9273235 326.287567,63.9574223 C327.31259,62.9852173 327.824315,61.6359564 327.824315,59.9096397 C327.824315,58.4728343 327.336172,57.3224685 326.353596,56.4570063 C325.366304,55.6038311 323.70693,54.878901 321.373117,54.2791442 C318.90017,53.6417586 317.049784,52.6964312 315.825888,51.4470019 C314.597275,50.1968045 313.988078,48.6186992 313.988078,46.7165255 C313.988078,44.5340558 314.767064,42.7516799 316.330538,41.3701657 C317.486047,40.3449732 318.849862,39.7052838 320.425914,39.4534013 L320.425914,36 L323.672344,36 L323.672344,39.352034 C325.545526,39.5793426 327.077558,40.2359265 328.277872,41.3263935 C329.764313,42.6841016 330.565309,44.5448068 330.677715,46.9146526 L327.494956,46.9146526 L327.494956,46.9154206 Z"
+                    id="Shape"></path>
+                </g>
+                </g>
+                </svg>
+
+                  {{job?.amount}}</span>
+              </td>
+
+              <td class="align-center date-cell">
+                <span class="job-item-date">{{job?.date | zuDate: 'short'}}</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="flex flex-justify-space-center flex-align-center mt-48" *ngIf="adminManagementData?.all.length === 0">
+            <h4>No jobs</h4>
+          </div>
+        </mat-tab>
+        <!--All jobs-->
+
+        <mat-tab label="{{setCompletedJobsTabLabel()}}">
+          <table class="admin-manage-table" *ngIf="adminManagementData?.pending.length > 0">
+
+            <thead>
+            <tr class="admin-manage-table__header">
+              <th class="admin-manage-table__header-label">Job name</th>
+              <th class="admin-manage-table__header-label">Total price</th>
+              <th class="admin-manage-table__header-label">Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr class="table-row" *ngFor="let job of adminManagementData.pending; let index = index">
+              <td class="main-cell">
+                <div class="main-cell--block">
+                  <div>
+                    <label class="label job-item-title mb-6">{{job?.title}}</label>
+                    <span class="after-line job-item-user">business:
+                      <a class="link-default blue" routerLink="{{getUserPageUrl(job.ownerId)}}">{{job?.ownerFullName}}</a></span>
+                    <span class="job-item-user">shooter:
+                      <a class="link-default blue" routerLink="{{getUserPageUrl(job.shooterId)}}">{{job?.shooterFullName}}</a></span>
+                  </div>
+
+                  <button class="main-cell--block-button" (click)="closeJob(index, job.id)">CLOSE JOB</button>
+                </div>
+              </td>
+
+              <td class="align-center">
+                <span class="job-item-price">
+                <svg class="vertical-align-middle" width="18px" height="18px" viewBox="0 0 18 36" version="1.1">
+                <defs></defs>
+                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="icons" transform="translate(-313.000000, -36.000000)" fill="#56A6FF" fill-rule="nonzero">
+                <path
+                    d="M327.494956,46.9154206 C327.296869,45.2520745 326.776497,44.0187717 325.944845,43.2132085 C325.110048,42.409949 323.909734,42.0060155 322.344688,42.0060155 C320.71204,42.0060155 319.44491,42.4153246 318.530722,43.2354786 C317.614961,44.0525608 317.155902,45.1952473 317.155902,46.6581625 C317.155902,47.9598114 317.583519,49.0003626 318.423032,49.7706009 C319.253111,50.530856 320.672737,51.164402 322.68741,51.6858295 C325.490502,52.4046161 327.577492,53.4413277 328.957815,54.7982679 C330.319272,56.1421532 331,57.8193221 331,59.8274707 C331,62.2633589 330.157343,64.2569167 328.463383,65.8150558 C327.173457,67.0122656 325.573824,67.745643 323.67313,68.0105804 L323.67313,72 L320.4267,72 L320.4267,68.0282429 C318.541727,67.7356599 316.880781,66.9331684 315.445434,65.6161608 C313.824577,64.1102413 313.017293,62.4077305 313,60.5047889 L313.045592,59.8267028 L316.207127,59.8267028 C316.236211,61.6098466 316.751867,62.9852173 317.756452,63.9574223 C318.760252,64.9280915 320.179091,65.4164978 322.007468,65.4164978 C323.835844,65.4164978 325.262544,64.9273235 326.287567,63.9574223 C327.31259,62.9852173 327.824315,61.6359564 327.824315,59.9096397 C327.824315,58.4728343 327.336172,57.3224685 326.353596,56.4570063 C325.366304,55.6038311 323.70693,54.878901 321.373117,54.2791442 C318.90017,53.6417586 317.049784,52.6964312 315.825888,51.4470019 C314.597275,50.1968045 313.988078,48.6186992 313.988078,46.7165255 C313.988078,44.5340558 314.767064,42.7516799 316.330538,41.3701657 C317.486047,40.3449732 318.849862,39.7052838 320.425914,39.4534013 L320.425914,36 L323.672344,36 L323.672344,39.352034 C325.545526,39.5793426 327.077558,40.2359265 328.277872,41.3263935 C329.764313,42.6841016 330.565309,44.5448068 330.677715,46.9146526 L327.494956,46.9146526 L327.494956,46.9154206 Z"
+                    id="Shape"></path>
+                </g>
+                </g>
+                </svg>
+
+                {{job?.amount}}</span>
+              </td>
+
+              <td class="align-center date-cell">
+                <span class="job-item-date">{{job?.date | zuDate: 'short'}}</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="flex flex-justify-space-center flex-align-center mt-48" *ngIf="adminManagementData?.pending.length === 0">
+            <h4>No completed jobs</h4>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="{{setClosedJobsTabLabel()}}">
+          <table class="admin-manage-table" *ngIf="adminManagementData?.closed.length > 0">
+
+            <thead>
+            <tr class="admin-manage-table__header">
+              <th class="admin-manage-table__header-label">Job name</th>
+              <th class="admin-manage-table__header-label">Total price</th>
+              <th class="admin-manage-table__header-label">Date</th>
+            </tr>
+            </thead>
+
+            <tbody class="mt-24">
+            <tr class="table-row" *ngFor="let job of adminManagementData?.closed;">
+              <td class="main-cell">
+                <div class="main-cell--block">
+                  <div>
+                    <label class="label job-item-title mb-6">{{job?.title}}</label>
+                    <span class="after-line job-item-user">business:
+                      <a class="link-default blue" routerLink="{{getUserPageUrl(job.ownerId)}}">{{job?.ownerFullName}}</a></span>
+                    <span class="job-item-user">shooter:
+                      <a class="link-default blue" routerLink="{{getUserPageUrl(job.shooterId)}}">{{job?.shooterFullName}}</a></span>
+                  </div>
+
+                </div>
+              </td>
+
+              <td class="align-center">
+                <span class="job-item-price">
+                <svg class="vertical-align-middle" width="18px" height="18px" viewBox="0 0 18 36" version="1.1">
+                <defs></defs>
+                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="icons" transform="translate(-313.000000, -36.000000)" fill="#56A6FF" fill-rule="nonzero">
+                <path
+                    d="M327.494956,46.9154206 C327.296869,45.2520745 326.776497,44.0187717 325.944845,43.2132085 C325.110048,42.409949 323.909734,42.0060155 322.344688,42.0060155 C320.71204,42.0060155 319.44491,42.4153246 318.530722,43.2354786 C317.614961,44.0525608 317.155902,45.1952473 317.155902,46.6581625 C317.155902,47.9598114 317.583519,49.0003626 318.423032,49.7706009 C319.253111,50.530856 320.672737,51.164402 322.68741,51.6858295 C325.490502,52.4046161 327.577492,53.4413277 328.957815,54.7982679 C330.319272,56.1421532 331,57.8193221 331,59.8274707 C331,62.2633589 330.157343,64.2569167 328.463383,65.8150558 C327.173457,67.0122656 325.573824,67.745643 323.67313,68.0105804 L323.67313,72 L320.4267,72 L320.4267,68.0282429 C318.541727,67.7356599 316.880781,66.9331684 315.445434,65.6161608 C313.824577,64.1102413 313.017293,62.4077305 313,60.5047889 L313.045592,59.8267028 L316.207127,59.8267028 C316.236211,61.6098466 316.751867,62.9852173 317.756452,63.9574223 C318.760252,64.9280915 320.179091,65.4164978 322.007468,65.4164978 C323.835844,65.4164978 325.262544,64.9273235 326.287567,63.9574223 C327.31259,62.9852173 327.824315,61.6359564 327.824315,59.9096397 C327.824315,58.4728343 327.336172,57.3224685 326.353596,56.4570063 C325.366304,55.6038311 323.70693,54.878901 321.373117,54.2791442 C318.90017,53.6417586 317.049784,52.6964312 315.825888,51.4470019 C314.597275,50.1968045 313.988078,48.6186992 313.988078,46.7165255 C313.988078,44.5340558 314.767064,42.7516799 316.330538,41.3701657 C317.486047,40.3449732 318.849862,39.7052838 320.425914,39.4534013 L320.425914,36 L323.672344,36 L323.672344,39.352034 C325.545526,39.5793426 327.077558,40.2359265 328.277872,41.3263935 C329.764313,42.6841016 330.565309,44.5448068 330.677715,46.9146526 L327.494956,46.9146526 L327.494956,46.9154206 Z"
+                    id="Shape"></path>
+                </g>
+                </g>
+                </svg>
+
+                {{job?.amount}}</span>
+              </td>
+
+              <td class="align-center date-cell">
+                <span class="job-item-date">{{job?.date | zuDate: 'short'}}</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="flex flex-justify-space-center flex-align-center mt-48" *ngIf="adminManagementData?.closed.length === 0">
+            <h4>No closed jobs</h4>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</section>

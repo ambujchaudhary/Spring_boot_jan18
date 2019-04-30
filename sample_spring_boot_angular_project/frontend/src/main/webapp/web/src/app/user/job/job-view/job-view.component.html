@@ -1,0 +1,52 @@
+<zu-header (jobEditedEmitter)="updateJobAfterEmitter()"></zu-header>
+
+<zu-intro-header [title]="getIntroHeaderTitle()" [background]="2"></zu-intro-header>
+
+<section class="flex main-height admin-page-backgroud">
+  <mat-card class="full-width">
+    <mat-card-content class="main-content-padding post-job-container container" *ngIf="jobView">
+
+      <zu-alert-message *ngIf="jobView.ownershipType === ownershipTypeEnum.OWNER && jobView.status === jobStatusEnum.NEW && isJobAboutExpire()"
+                        [title]="showDaysToExpire()">
+        <ol class="message-expire-list">
+          <li class="message-expire-job">
+            View/Hire an Applicant
+          </li>
+
+          <li class="message-expire-job">
+            <button class="expire-job-button keep-active-button"
+                    [disabled]="isRequestInProgress"
+                    (click)="openRenewJobModal()">
+              Keep Active
+            </button>
+            (This will renew your job post for a further 30 days)
+          </li>
+
+          <li class="message-expire-job">
+            <button class="expire-job-button cancel-job-button"
+                    [disabled]="isRequestInProgress"
+                    (click)="openCancelJobModal()">
+              Cancel Job
+            </button>
+            (This will cancel your job post and move it to archive)
+          </li>
+        </ol>
+      </zu-alert-message>
+
+      <div class="job-preview__header-wrapper">
+        <h2 class="title-for-overview">Job overview</h2>
+        <zu-job-view-header-buttons [ownershipType]="jobView.ownershipType" [job]="jobView"></zu-job-view-header-buttons>
+      </div>
+
+      <zu-job-preview [job]="jobView"
+                      [profileNames]="profileNames"
+                      [attachments]="uploadedFiles"
+                      [totalAmount]="calcTotalAmount()"
+                      [isApplicantsSectionVisible]="true"></zu-job-preview>
+
+      <zu-job-view-controls [ownershipType]="jobView.ownershipType"
+                            [job]="jobView"
+                            (onChangeJobStatus)="changeOwnershipType()"></zu-job-view-controls>
+    </mat-card-content>
+  </mat-card>
+</section>

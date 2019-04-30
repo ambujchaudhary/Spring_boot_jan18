@@ -1,0 +1,78 @@
+{
+  "project_info": {
+    "project_number": "404139733949",
+    "firebase_url": "https://shootzu-45853.firebaseio.com",
+    "project_id": "shootzu-45853",
+    "storage_bucket": "shootzu-45853.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404139733949:android:e1c762893cb20aeb",
+        "android_client_info": {
+          "package_name": "com.shootzu.shootzu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "404139733949-fm02kpl9bkqmsoi7dvo09pisj039uq4o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shootzu.shootzu",
+            "certificate_hash": "856a4d5231dc6cd45cf33c1528d2a0d54a0329fe"
+          }
+        },
+        {
+          "client_id": "404139733949-lsascdnvk8glget1cfjknri7pi4tvr9p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shootzu.shootzu",
+            "certificate_hash": "960fb9e4515e713eff260c5b0533b465b619155e"
+          }
+        },
+        {
+          "client_id": "404139733949-3o6chqses80ir3114vifsv60aatjglu9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shootzu.shootzu",
+            "certificate_hash": "234173a7dd81122716041b123c38385ee411f5f8"
+          }
+        },
+        {
+          "client_id": "404139733949-nr76rir76bb7tetcuh8c3hegkq25e0cr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDccZ3zWyn-kQNiBL_MwTgdQC9AZbkzzI8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "404139733949-nr76rir76bb7tetcuh8c3hegkq25e0cr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "404139733949-sd456e6k860luufq6oehpbkg1ei56f92.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shootzu.shootzu"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

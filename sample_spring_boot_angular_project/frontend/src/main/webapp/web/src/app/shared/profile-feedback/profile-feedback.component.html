@@ -1,0 +1,76 @@
+<div class="flex flex-justify-space-between flex-wrap container-summary mt-24">
+  <div class="full-width feedback-header flex flex-justify-space-between flex-align-center">
+    <div class="flex flex-align-center">
+      <svg class="mr-20" width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs></defs>
+        <g id="Business" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="User-Profile-Review" transform="translate(-209.000000, -1076.000000)" fill="#67C6B4" fill-rule="nonzero">
+            <g id="Group-5" transform="translate(181.000000, 1062.000000)">
+              <g id="message-text" transform="translate(28.000000, 14.000000)">
+                <path d="M22.5,0 L2.5,0 C1.11928813,0 0,1.11928813 0,2.5 L0,25 L5,20 L22.5,20 C23.8807119,20 25,18.8807119 25,17.5 L25,2.5 C25,1.11928813 23.8807119,0 22.5,0 M5,8.75 L20,8.75 L20,11.25 L5,11.25 M15,15 L5,15 L5,12.5 L15,12.5 M20,7.5 L5,7.5 L5,5 L20,5"
+                      id="Shape"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+
+      <label class="label label-big">{{feedbackQuantity}} REVIEW(S)</label>
+    </div>
+    <button class="label font-size-16 toggle-button" (click)="openFeedbacks()" *ngIf="feedbackQuantity > 0">
+      {{isFeedbacksOpen ? 'hide' : 'view'}}
+
+      <svg class="icon-filter" ngClass="{{isFeedbacksOpen ? 'icon-filter--opened' : 'icon-filter'}}" width="20px" height="20px"
+           viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs></defs>
+        <g id="Find-Job" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="Find-Job-Filters-Hidden" transform="translate(-737.000000, -637.000000)">
+            <g id="Group-18" transform="translate(1.000000, 632.000000)">
+              <g id="Group-19" transform="translate(598.000000, 0.000000)">
+                <g id="Group-7" transform="translate(139.000000, 6.000000)">
+                  <polygon id="dropdown-arrow" fill="#4DA1FF" fill-rule="nonzero" points="3 7 9 13 15 7"></polygon>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+
+    </button>
+  </div>
+
+  <div class="full-width" *ngIf="isFeedbacksOpen">
+    <ul class="list-unstyled" *ngFor="let review of feedback">
+      <li class="review-wrapper">
+        <div class="flex flex-justify-space-between flex-align-center flex-wrap">
+          <span class="label label-big">{{review.authorFullName}}</span>
+
+          <div class="flex flex-align-center">
+            <label for="feedback-stars" class="label mr-12 feedback-review">Rating: </label>
+            <zu-rating-picker id="feedback-stars" [pickerClass]="'small-star-picker'">
+              <bar-rating [readOnly]="true" [max]="5" [rate]="review.mark" [theme]="'fontawesome-o'"></bar-rating>
+            </zu-rating-picker>
+          </div>
+        </div>
+
+        <span class="label ownertype-label mb-24" *ngIf="review.ownerType === ownerNameEnum.BUSINESS_NAME">As Business</span>
+        <span class="label ownertype-label mb-24" *ngIf="review.ownerType === ownerNameEnum.PERSONAL_NAME">As Crew</span>
+
+        <div class="mb-12 feedback-review">
+          {{review.review}}
+        </div>
+
+        <span class="review-date-label feedback-date">{{review.reviewDate | zuDate: 'short-month'}}</span>
+      </li>
+    </ul>
+
+    <div class="flex flex-justify-space-center">
+      <button class="button-upload-more" (click)="uploadMoreFeedback()" *ngIf="!isLastPage">
+        <span class="button-upload-more__text">SHOW MORE</span>
+        <i class="material-icons field-uploaded-close" *ngIf="isUploadInProgress">
+          <mat-spinner class="grey" [diameter]="18" [strokeWidth]="1.5" [value]="50" mode="indeterminate"></mat-spinner>
+        </i>
+      </button>
+    </div>
+  </div>
+</div>

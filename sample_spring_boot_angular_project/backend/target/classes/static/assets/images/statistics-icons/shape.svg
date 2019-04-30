@@ -1,0 +1,24 @@
+<svg width="14px" height="10px" viewBox="0 0 14 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+  <desc>Created with Sketch.</desc>
+  <defs></defs>
+  <g id="Dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g transform="translate(-213.000000, -621.000000)" fill="#999999" fill-rule="nonzero" id="Group-14">
+      <g transform="translate(69.000000, 117.000000)">
+        <g id="Group-11" transform="translate(1.000000, 366.000000)">
+          <g id="Group-4" transform="translate(124.000000, 86.000000)">
+            <g id="Group-5">
+              <g id="card-1">
+                <g id="BG">
+                  <g id="Group-30" transform="translate(19.000000, 52.000000)">
+                    <path d="M5.09994704,10 C4.65650752,10 4.21220135,9.81946782 3.87449399,9.45794017 L0.714229101,6.07910058 C0.206368077,5.53657746 0.206368077,4.65615493 0.714229101,4.1136318 C1.22209012,3.57064538 2.0446921,3.57064538 2.55255312,4.1136318 L5.09994704,6.83736661 L11.1141135,0.407239819 C11.6219746,-0.135746606 12.4445765,-0.135746606 12.9524376,0.407239819 C13.4602986,0.949762945 13.4602986,1.83018547 12.9524376,2.3727086 L6.32540009,9.45794017 C5.98769273,9.81946782 5.54338655,10 5.09994704,10 Z" id="Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

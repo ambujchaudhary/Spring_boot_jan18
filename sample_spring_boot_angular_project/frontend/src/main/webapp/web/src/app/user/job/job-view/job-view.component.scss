@@ -1,0 +1,37 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+.title-for-overview {
+  font-family:   $font-sf-normal;
+  font-size:     22px;
+  margin-top:    0;
+  margin-bottom: 6px;
+}
+
+.message-expire-list {
+  list-style: disc;
+  padding:    0 20px;
+  margin:     0;
+}
+
+.message-expire-job {
+  margin:      10px 0;
+  font-family: $font-sf-light;
+  font-size:   16px;
+
+  &:first-child {
+    margin-top: 24px;
+  }
+}
+
+.job-preview__header-wrapper {
+  display:         flex;
+  justify-content: space-between;
+  flex-wrap:       wrap;
+
+  @media screen and (max-width: $xsMaxWidth) {
+    .title-for-overview {
+      width: 100%;
+    }
+  }
+}

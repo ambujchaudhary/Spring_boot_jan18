@@ -1,0 +1,132 @@
+<!--Owner------------ buttons-->
+
+<div class="mb-24 mt-48 button--box">
+  <!-- Back to job list button -->
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.OWNER || ownershipType === ownershipTypeEnum.ADMIN"
+          mat-raised-button
+          class="button-primary button-grey full-width-xs"
+          (click)="backToJobList()">
+    Back to job list
+  </button>
+
+  <!--Applicant--------- buttons-->
+
+  <!-- Back button -->
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.APPLICANT || ownershipType === ownershipTypeEnum.VIEWER || ownershipType === ownershipTypeEnum.OFFER_DECLINED"
+          mat-raised-button
+          class="button-primary button-grey full-width-xs"
+          (click)="goBack()">
+    Go back
+  </button>
+
+  <!-- Back to find job button -->
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.SHOOTER && job.status !== jobStatusEnum.NEW && job.status !== jobStatusEnum.WAITING_FOR_RESPONSE"
+          mat-raised-button
+          class="button-primary button-grey full-width-xs"
+          (click)="goBack()">
+    Back to find job
+  </button>
+
+  <!--Chosen Applicant and Shooter--------- buttons-->
+
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.CHOSEN_APPLICANT || ownershipType === ownershipTypeEnum.SHOOTER"
+          mat-raised-button
+          class="button-primary button-grey full-width-xs"
+          (click)="openSendMessageModal()"
+          [disabled]="isRequestInProgress">
+    <span>Ask a Question </span>
+    <svg class="ml-2" width="25px" height="25px" viewBox="0 0 25 25" version="1.1">
+      <defs></defs>
+      <g id="Business" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="User-Profile-Review" transform="translate(-209.000000, -1076.000000)" fill="#67C6B4" fill-rule="nonzero">
+          <g id="Group-5" transform="translate(181.000000, 1062.000000)">
+            <g id="message-text" transform="translate(28.000000, 14.000000)">
+              <path d="M22.5,0 L2.5,0 C1.11928813,0 0,1.11928813 0,2.5 L0,25 L5,20 L22.5,20 C23.8807119,20 25,18.8807119 25,17.5 L25,2.5 C25,1.11928813 23.8807119,0 22.5,0 M5,8.75 L20,8.75 L20,11.25 L5,11.25 M15,15 L5,15 L5,12.5 L15,12.5 M20,7.5 L5,7.5 L5,5 L20,5"
+                    id="Shape"></path>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </button>
+
+  <!--Active job  --------- Owner buttons-->
+
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.OWNER && (job?.status === jobStatusEnum.IN_PROGRESS || job?.status === jobStatusEnum.OFFER_ACCEPTED)"
+          mat-raised-button
+          class="button-primary button-grey full-width-xs"
+          (click)="openSendMessageModal()">
+    <span>Message Crew </span>
+    <svg class="ml-2" width="25px" height="25px" viewBox="0 0 25 25" version="1.1">
+      <defs></defs>
+      <g id="Business" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="User-Profile-Review" transform="translate(-209.000000, -1076.000000)" fill="#67C6B4" fill-rule="nonzero">
+          <g id="Group-5" transform="translate(181.000000, 1062.000000)">
+            <g id="message-text" transform="translate(28.000000, 14.000000)">
+              <path d="M22.5,0 L2.5,0 C1.11928813,0 0,1.11928813 0,2.5 L0,25 L5,20 L22.5,20 C23.8807119,20 25,18.8807119 25,17.5 L25,2.5 C25,1.11928813 23.8807119,0 22.5,0 M5,8.75 L20,8.75 L20,11.25 L5,11.25 M15,15 L5,15 L5,12.5 L15,12.5 M20,7.5 L5,7.5 L5,5 L20,5"
+                    id="Shape"></path>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </button>
+
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.OWNER  && (job?.status === jobStatusEnum.IN_PROGRESS || job?.status === jobStatusEnum.OFFER_ACCEPTED)"
+          mat-raised-button
+          class="button-primary full-width-xs"
+          (click)="openCompleteJobDialog()">
+    COMPLETE JOB
+  </button>
+
+
+  <!--Chosen Applicant--------- buttons-->
+
+  <!-- Decline offer button -->
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.CHOSEN_APPLICANT && job.status === jobStatusEnum.WAITING_FOR_RESPONSE"
+          mat-raised-button
+          class="button-primary button-primary--danger full-width-xs"
+          (click)="openDeclineOfferDialog()">
+    DECLINE OFFER
+  </button>
+
+  <!-- Accept offer button -->
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.CHOSEN_APPLICANT && job.status === jobStatusEnum.WAITING_FOR_RESPONSE"
+          mat-raised-button
+          class="button-primary full-width-xs"
+          (click)="openAcceptOfferDialog()">
+    ACCEPT OFFER
+  </button>
+
+
+  <!--Shooter--------- buttons-->
+
+  <!-- Cancel application button -->
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.APPLICANT"
+          mat-raised-button
+          class="button-primary button-primary--danger full-width-xs"
+          (click)="openDialog()">
+    Cancel application
+  </button>
+
+  <!--Viewer--------- buttons-->
+
+  <!-- Back button -->
+  <button type="button"
+          *ngIf="ownershipType === ownershipTypeEnum.VIEWER"
+          mat-raised-button
+          class="button-primary full-width-xs"
+          [disabled]="isApplyButtonDisabled"
+          (click)="applyForJob()">
+    Apply for job
+  </button>
+</div>

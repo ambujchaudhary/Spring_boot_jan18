@@ -1,0 +1,39 @@
+@import "../../../../assets/scss/variables";
+
+.membership-modal-wrapper {
+  @media screen and (min-width: $smMaxWidth) {
+    width: 700px;
+  }
+}
+
+.membership-modal {
+  &--header {
+    font-size:   32px;
+    color:       $color-white;
+    font-family: $font-sf-normal;
+    text-align:  center;
+    margin:      0;
+  }
+
+  &--subheader {
+    text-align:  center;
+    font-size:   20px;
+    font-family: $font-sf-light;
+    color:       $color-white;
+  }
+
+  &--button {
+    font-family: $font-sf-light;
+    width:       320px;
+  }
+}
+
+.font-sf-semibold {
+  font-family: $font-sf-semibold;
+}
+
+.disabled {
+  opacity:        .5;
+  pointer-events: none;
+  cursor:         not-allowed;
+}

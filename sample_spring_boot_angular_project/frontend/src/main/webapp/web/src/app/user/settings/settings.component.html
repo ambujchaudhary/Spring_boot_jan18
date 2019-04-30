@@ -1,0 +1,96 @@
+<zu-header></zu-header>
+<!--TODO change text for settings page-->
+<zu-intro-header [background]="2" [title]="'ACCOUNT SETTINGS'" [isLogoVisible]="true"></zu-intro-header>
+
+<section class="flex flex-justify-space-center admin-page-backgroud main-height">
+  <mat-card class="setting-page-container">
+    <div class="flex flex-justify-space-between flex-wrap main-content-padding">
+
+      <!--Membership actions container-->
+      <div class="box-setting" *ngIf="isNotIos()">
+        <h2 class="box-setting__header">Membership info</h2>
+
+        <ul class="list-unstyled mt-16">
+          <li class="box-setting__item mb-24">
+            <zu-membership-details [subscriptions]="subscriptions"
+                                   (cancelSubscriptionEmitter)="getSubscriptions()"></zu-membership-details>
+          </li>
+
+          <li class="box-setting__item mb-12" *ngIf="mobile === false">
+            <zu-manage-payment-details [type]="'paymentPortal'"></zu-manage-payment-details>
+          </li>
+
+          <li class="box-setting__item mb-12" *ngIf="mobile === false">
+            <zu-manage-payment-details [type]="'subscriptionsModal'"
+                                       [currentSubscriptionsType]="getSubscriptionTypes()"
+                                       (successSubscriptionCreatedEmitter)="getSubscriptions()"></zu-manage-payment-details>
+          </li>
+        </ul>
+      </div>
+
+      <!--Job notifications setting container-->
+      <div class="box-setting">
+        <h2 class="box-setting__header">Job Notifications</h2>
+        <label class="label box-setting-label">Choose which job posts you see (based on distance from your profile location)</label>
+
+        <div class="align-center mt-24">
+          <mat-slider min="1"
+                      max="6"
+                      step="1"
+                      value="1"
+                      class="full-width zu-slider--violet"
+                      [(ngModel)]="sliderValue"
+                      tickInterval="1"></mat-slider>
+          <span class="range-tick" *ngFor="let option of radiusOptions">{{option}}<span class="range-tick__km">km</span></span>
+          <!--<ion-range min="1" max="6" step="1" [(ngModel)]="sliderValue">-->
+        </div>
+
+        <div class="mt-12 flex flex-justify-space-between flex-wrap">
+          <mat-slide-toggle color="primary"
+                            [checked]="notificationSettings?.email"
+                            (change)="notificationSettings.email = !notificationSettings.email">
+            EMAIL NOTIFICATIONS
+          </mat-slide-toggle>
+
+          <mat-slide-toggle color="primary"
+                            [checked]="notificationSettings?.push"
+                            (change)="notificationSettings.push = !notificationSettings.push">
+            PUSH NOTIFICATIONS
+          </mat-slide-toggle>
+        </div>
+      </div>
+
+      <!--Profile settings container-->
+      <div class="box-setting box-setting__small-box">
+        <h2 class="box-setting__header">Profile settings</h2>
+        <label class="label box-setting-label">Change contact details of areas of expertise</label>
+        <ul class="list-unstyled mt-36">
+          <li class="box-setting__item"><a [routerLink]="'/profile'" class="resource-link">Edit profile ></a></li>
+          <li class="box-setting__item mt-12">
+            <button class="resource-link button-membership" (click)="openChangePasswordModal()" *ngIf="!user.social">Change password >
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!--Support & contact container-->
+      <div class="box-setting box-setting__small-box">
+        <h2 class="box-setting__header">Need support?</h2>
+        <label class="label box-setting-label">Contact the Shootzu team</label>
+        <ul class="list-unstyled mt-36">
+          <li class="box-setting__item">
+            <button class="resource-link button-membership" (click)="openIntercom()">Open support chat ></button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="full-width mt-24">
+        <button mat-raised-button class="button-primary push-right full-width-xs"
+                (click)="setSettings()"
+                [disabled]="isSaveInProgress">Save
+        </button>
+      </div>
+    </div>
+  </mat-card>
+
+</section>

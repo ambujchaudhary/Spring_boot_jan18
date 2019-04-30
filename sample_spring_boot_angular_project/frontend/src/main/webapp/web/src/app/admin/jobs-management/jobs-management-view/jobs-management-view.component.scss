@@ -1,0 +1,14 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+.title-for-overview {
+  font-family:   $font-sf-normal;
+  font-size:     22px;
+  margin-top:    0;
+  margin-bottom: 6px;
+
+  @media screen and (max-width: $xsMaxWidth) {
+      width: 100%;
+  }
+
+}

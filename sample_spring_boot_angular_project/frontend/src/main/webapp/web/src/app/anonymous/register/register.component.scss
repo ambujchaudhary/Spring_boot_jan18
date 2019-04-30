@@ -1,0 +1,206 @@
+@import "../../app.component";
+@import "../../../assets/scss/variables";
+
+.user-data-vertical-line-block {
+  height: 492px;
+}
+
+.card-detail-vertical-block {
+  height: 492px;
+}
+
+.terms-container {
+  max-height:    350px;
+  height:        350px;
+  width:         100%;
+  overflow:      auto;
+  border-radius: 3px;
+  overflow-y:    hidden;
+  position:      relative;
+  margin-bottom: 12px;
+
+  &__body {
+    position: relative;
+    z-index:  2;
+  }
+
+  &__spinner {
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+    height:          100%;
+    width:           100%;
+    z-index:         1;
+    background:      white;
+    position:        absolute;
+    top:             0;
+    right:           0;
+  }
+}
+
+.date-field {
+  border:        none;
+  border-radius: 3px;
+}
+
+.button-bottom {
+  min-width: 158px;
+
+  &.button-back {
+    background:     $color-black;
+    color:          $color-white;
+    text-transform: uppercase;
+    font-weight:    bold;
+  }
+}
+
+.bottom-box {
+  @media screen and (min-width: $smMaxWidth) {
+    .bottom-box__item + .bottom-box__item {
+      margin-left: 20px;
+    }
+  }
+}
+
+.bottom-box__item--input {
+  width: 46%;
+
+  & + .bottom-box__item--input {
+    margin-left: 20px;
+  }
+
+  &.bottom-box__item--input {
+    .button-bottom {
+      min-width: auto;
+    }
+  }
+}
+
+.info-label {
+  font-size:   16px;
+  color:       $color-white;
+  font-family: $font-sf-normal;
+  padding:     5px;
+
+  @media screen and (max-width: $smMaxWidth) {
+    text-align: center;
+  }
+}
+
+.info-title {
+  font-size: 27px;
+}
+
+.controls-container {
+  @media screen and (max-width: $smMaxWidth) {
+    flex-direction: column;
+
+    .buttons-container {
+      display:        flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.link-privacy-policy {
+  text-decoration: none;
+  color:           $color-blue-dark-1;
+
+  &:hover {
+    text-decoration: underline;
+    cursor:          pointer;
+  }
+}
+
+._button {
+  max-width: 328px !important;
+}
+
+._link {
+  font-size: 16px;
+  color:     $color-white;
+}
+
+._text {
+  max-width:     500px;
+  font-size:     16px;
+  color:         white;
+  text-align:    center;
+  margin-bottom: 24px;
+  font-family:   $font-sf-normal;
+}
+
+.button-logout {
+  position:    absolute;
+  background:  #7A1A7D;
+  font-size:   12px;
+  display:     flex;
+  top:         70px;
+  right:       30px;
+  line-height: 14px;
+  color:       white;
+  opacity:     1;
+  padding:     5px 7px;
+
+  &:hover {
+    background: $color-purple-darkest;
+  }
+
+  &.show-xs {
+    display: none;
+
+    @media screen and (max-width: $smMaxWidth) {
+      display:    flex;
+      text-align: center;
+      position:   static;
+      margin:     24px auto;
+    }
+  }
+}
+
+.membership-step {
+  &--header {
+    font-size:   36px;
+    color:       $color-white;
+    margin:      0 0 24px 0;
+    font-family: $font-sf-light;
+    text-align:  center;
+  }
+
+  &--button {
+    font-family: $font-sf-light;
+    width:       320px;
+  }
+}
+
+.membership-block-register {
+  $membershipBlockSmBreakpoint: 976px;
+  $membershipBlockXsBreakpoint: 676px;
+
+  &.mouse-events-disabled {
+    pointer-events: none;
+    opacity:        .6;
+  }
+
+  @media screen and (max-width: $membershipBlockSmBreakpoint) {
+    min-width:     47%;
+    margin-bottom: 24px;
+  }
+
+  @media screen and (max-width: $membershipBlockXsBreakpoint) {
+    min-width: 100%;
+    width:     100%;
+  }
+}
+
+.font-sf-light {
+  font-family: $font-sf-light;
+}
+
+.font-sf-semibold {
+  font-family: $font-sf-semibold;
+}
+
+.fs-16 {
+  font-size: 16px;
+}

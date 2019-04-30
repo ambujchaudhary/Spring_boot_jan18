@@ -1,0 +1,86 @@
+<div class="membership-modal-wrapper">
+  <h1 class="membership-modal--header">{{data?.headerText}}</h1>
+
+  <p class="membership-modal--subheader">{{data?.subheaderText}}</p>
+
+  <!--Only in manage subscriptions modal on settings-->
+  <div class="flex flex-justify-space-arround flex-align-center flex-wrap">
+    <div class="membership-block membership-block__free-subscription-block full-width-xs mb-xs-24"
+         (click)="selectMembershipType(membershipTypeEnum.FREE)"
+         [ngClass]="isActive(subscriptionTypeEnum.FREE)">
+
+      <div class="membership-block__header">
+
+        <h3 class="membership-block__subheader">FREE</h3>
+
+        <span class="membership-block__price">No Membership Fee</span>
+      </div>
+
+      <ul class="list-unstyled mt-12 membership-block__list">
+        <li class="membership-block__list-item">Apply for 3 Jobs</li>
+        <li class="membership-block__list-item">Post 1 job</li>
+        <li class="membership-block__list-item">Profile/Portfolio</li>
+        <li class="membership-block__list-item">Find/Search for Jobs</li>
+        <li class="membership-block__list-item">Crew Payments</li>
+        <li class="membership-block__list-item">Crew Contracts</li>
+        <li class="membership-block__list-item">Insurance on Jobs</li>
+        <li class="membership-block__list-item">Android & iOS App</li>
+      </ul>
+    </div>
+    <!--End of optional block-->
+
+    <div class="membership-block full-width-xs mb-xs-24"
+         (click)="selectMembershipType(membershipTypeEnum.MONTHLY)"
+         [ngClass]="isActive(subscriptionTypeEnum.MONTHLY)">
+
+      <div class="membership-block__header">
+
+        <h3 class="membership-block__subheader">MONTHLY</h3>
+
+        <span class="membership-block__price">{{15.91 | currency: '$'}} AUD</span>
+      </div>
+
+      <ul class="list-unstyled mt-12 membership-block__list">
+        <li class="membership-block__list-item">Apply for <span class="font-sf-semibold">Unlimited</span> Jobs</li>
+        <li class="membership-block__list-item">Post <span class="font-sf-semibold">Unlimited</span> Jobs</li>
+        <li class="membership-block__list-item">Profile/Portfolio</li>
+        <li class="membership-block__list-item">Find/Search for Jobs</li>
+        <li class="membership-block__list-item">Crew Payments</li>
+        <li class="membership-block__list-item">Crew Contracts</li>
+        <li class="membership-block__list-item">Insurance on Jobs</li>
+        <li class="membership-block__list-item">Android & iOS App</li>
+      </ul>
+    </div>
+
+    <div class="membership-block full-width-xs mb-xs-24"
+         (click)="selectMembershipType(membershipTypeEnum.ANNUAL)"
+         [ngClass]="isActive(subscriptionTypeEnum.ANNUAL)">
+
+      <div class="membership-block__header">
+
+        <h3 class="membership-block__subheader">ANNUAL</h3>
+
+        <span class="membership-block__price">$120 AUD</span>
+      </div>
+
+      <ul class="list-unstyled mt-12 membership-block__list">
+        <li class="membership-block__list-item">Save $70</li>
+        <li class="membership-block__list-item">Apply for <span class="font-sf-semibold">Unlimited</span> Jobs</li>
+        <li class="membership-block__list-item">Post <span class="font-sf-semibold">Unlimited</span> Jobs</li>
+        <li class="membership-block__list-item">Profile/Portfolio</li>
+        <li class="membership-block__list-item">Find/Search for Jobs</li>
+        <li class="membership-block__list-item">Crew Payments</li>
+        <li class="membership-block__list-item">Crew Contracts</li>
+        <li class="membership-block__list-item">Insurance on Jobs</li>
+        <li class="membership-block__list-item">Android & iOS App</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flex flex-direction-row flex-justify-space-center flex-wrap mt-24 mb-xs-24">
+
+    <button class="back-btn btn full-width-xs membership-step--button" matDialogClose>
+      cancel
+    </button>
+  </div>
+</div>

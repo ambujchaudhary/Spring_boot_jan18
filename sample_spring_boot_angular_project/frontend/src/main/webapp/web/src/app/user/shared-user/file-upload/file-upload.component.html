@@ -1,0 +1,66 @@
+<input id="image-upload-{{index}}" type="file" [hidden]="true" (change)="onChange($event)" [attr.accept]="getAccepts()">
+
+<!-- Empty -->
+<label for="image-upload-{{index}}"
+       [class.photo-upload-label]="labelType === 'photo' || labelType === 'file' "
+       class="file-upload-label"
+
+       [hidden]="data.isLoading === true || data.isInvalid === true || data.url">
+  {{label}}
+</label>
+
+<!-- Uploaded -->
+<div [hidden]="!data.url || (data.url && data.isLoading === true)" class="field-uploaded">
+  <!--<i class="material-icons field-uploaded-icon">insert_drive_file</i>-->
+  <i class="material-icons field-uploaded-icon">
+    <svg width="26px" height="22px" viewBox="0 0 20 28" version="1.1">
+      <use xlink:href="#file"></use>
+    </svg>
+  </i>
+
+  <span class="label field-uploaded-text" [attr.title]="data.originalName">{{data.originalName}}</span>
+
+  <i class="material-icons field-uploaded-close" role="button" (click)="onDeleteImage()">close</i>
+</div>
+
+<!-- Loading-->
+<div [hidden]="data.isLoading === false" class="field-uploaded">
+  <i class="material-icons field-uploaded-icon">
+    <svg width="26px" height="22px" viewBox="0 0 20 28" version="1.1" fill-opacity="0.3">
+      <use xlink:href="#file"></use>
+    </svg>
+  </i>
+
+  <span class="label field-uploaded-text text-not-upload" [attr.title]="data.originalName">{{data.originalName}}</span>
+
+  <i class="material-icons field-uploaded-close">
+    <mat-spinner [diameter]="22"
+                 [strokeWidth]="1.5"
+                 [value]="50"
+                 mode="indeterminate"></mat-spinner>
+  </i>
+
+  <!--<i [class.field-uploaded__hover-on]="data.originalName && !data.url"
+     class="material-icons field-uploaded-close"
+     role="button"
+     (click)="onDeleteImage()">cancel</i>-->
+</div>
+
+<!-- Upload Invalid-->
+<div [hidden]="(data.isInvalid !== true && data.isLoading === false) || data.isLoading === true"
+     class="field-uploaded">
+  <label for="image-upload-{{index}}" class="pointer" [attr.title]="data.errorMessage">
+    <i class="material-icons field-uploaded-icon field-uploaded__hover-off">
+      <svg width="26px" height="22px" viewBox="0 2 20 24" version="1.1">
+        <use xlink:href="#file-broken"></use>
+      </svg>
+    </i>
+    <i class="material-icons field-uploaded-icon field-uploaded__hover-on">refresh</i>
+  </label>
+
+  <label for="image-upload-{{index}}" class="label pointer field-uploaded-text text-not-upload" [attr.title]="data.originalName">
+    {{data.originalName}}
+  </label>
+
+  <i class="material-icons field-uploaded-close" role="button" (click)="onDeleteImage()">close</i>
+</div>

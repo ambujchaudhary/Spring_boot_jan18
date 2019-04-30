@@ -1,0 +1,43 @@
+@import "../../../assets/scss/variables";
+
+.default-star-picker::ng-deep {
+  .br-units {
+    justify-content: center;
+  }
+
+  .br-fontawesome-o {
+    margin: 36px 0 !important;
+  }
+
+  .br-fontawesome-o .br-unit {
+    font-size:    32px !important;
+    margin-right: 8px;
+  }
+
+  .br-fontawesome-o .br-unit:after {
+    color: $color-blue !important;
+  }
+}
+
+.small-star-picker::ng-deep {
+  .br-units {
+    justify-content: center;
+  }
+
+  .br-fontawesome-o {
+    margin: 12px 0 !important;
+  }
+
+  .br-fontawesome-o .br-unit {
+    font-size:    16px !important;
+    margin-right: 4px;
+
+    &:last-child {
+      margin-right: 0 !important;
+    }
+  }
+
+  .br-fontawesome-o .br-unit:after {
+    color: $color-blue !important;
+  }
+}

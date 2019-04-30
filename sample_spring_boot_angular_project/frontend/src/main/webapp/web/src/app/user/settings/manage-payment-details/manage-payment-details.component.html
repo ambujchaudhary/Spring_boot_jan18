@@ -1,0 +1,14 @@
+<ng-container *ngIf="type === 'paymentPortal'">
+  <button class="resource-link button-membership" data-cb-type="portal" (click)="openPortal()" [disabled]="isRequestInProgress">
+    Manage Payment Details >
+  </button>
+</ng-container>
+
+<ng-container *ngIf="type === 'subscriptionsModal'">
+  <button class="resource-link button-membership"
+          (click)="openManageMembershipModal()"
+          [disabled]="isRequestInProgress"
+          *ngIf="currentSubscriptionsType">
+    Manage Membership >
+  </button>
+</ng-container>

@@ -1,0 +1,28 @@
+.message-icon {
+  cursor:      pointer;
+  position:    relative;
+  background:  transparent;
+  border:      none;
+  line-height: 0;
+  padding:     0;
+}
+
+.messages {
+  position:        relative;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  height:          100%;
+  width:           56px;
+}
+
+.messages__budget {
+  position: absolute;
+  top:      -6px;
+  right:    -6px;
+
+  &.big {
+    top:   -6px;
+    right: -6px;
+  }
+}

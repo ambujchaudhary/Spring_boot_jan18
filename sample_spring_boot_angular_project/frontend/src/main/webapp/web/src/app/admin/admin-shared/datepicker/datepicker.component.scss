@@ -1,0 +1,56 @@
+@import "../../../../assets/scss/core";
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/helpers";
+
+.zu-datepicker {
+  height:    0;
+  max-width: 0;
+
+  .input {
+    display: none;
+  }
+}
+
+.zu-datepicker-button {
+  background-color: transparent;
+  color:            $color-black;
+  border-radius:    20px;
+  max-width:        110px;
+  min-width:        110px;
+  font-size:        16px;
+  font-family:      $font-sf-normal;
+
+  &::after {
+    content:            '';
+    background:         url("../../../../assets/images/admin-reports-icons/arrow-down-black.svg") no-repeat;
+    min-width:          15px;
+    min-height:         10px;
+    display:            inline-block;
+    -webkit-transition: all .2s;
+    -o-transition:      all .2s;
+    transition:         all .2s;
+  }
+
+  &.open {
+    background-color: $color-blue-1;
+    color:            $color-white;
+
+    &::after {
+      background:        url("../../../../assets/images/admin-reports-icons/arrow-down.svg") no-repeat;
+      transform-origin:  48% 39%;
+      -webkit-transform: rotate(180deg);
+      -ms-transform:     rotate(180deg);
+      transform:         rotate(180deg);
+    }
+  }
+
+  @media screen and (max-width: $xsMaxWidth) {
+    width: 100%;
+  }
+}
+
+.zu-datepicker-button.mat-button-wrapper {
+  display:       block;
+  padding-right: 18px;
+  text-align:    center;
+}

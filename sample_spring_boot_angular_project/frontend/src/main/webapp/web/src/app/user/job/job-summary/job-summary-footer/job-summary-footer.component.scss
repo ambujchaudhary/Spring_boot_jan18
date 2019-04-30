@@ -1,0 +1,60 @@
+@import "../../../../../assets/scss/variables";
+
+.footer-text {
+  font-family: $font-sf-normal;
+  font-size:   12px;
+  color:       $color-black;
+  line-height: 1.7;
+  white-space: nowrap;
+
+  @media screen and (max-width: $xsMaxWidth) {
+    margin-bottom: 12px;
+  }
+}
+
+.vertical-line-block-footer {
+  height:     14px;
+  background: $color-blue;
+  margin:     0 19px;
+}
+
+.slash {
+  color:  $color-blue;
+  margin: 0 2px;
+}
+
+.oval {
+  $oval-size: 3px;
+  background:    $color-blue;
+  height:        $oval-size;
+  width:         $oval-size;
+  max-height:    $oval-size;
+  max-width:     $oval-size;
+  border-radius: 50%;
+}
+
+.active-job-buttons {
+  @media screen and (max-width: $mdMaxWidth) {
+    width:     100% !important;
+    max-width: 100% !important;
+
+    .button-small {
+      width: 100%;
+    }
+  }
+}
+
+.active-job--button {
+  line-height: 31px;
+  font-family: $font-sf-normal;
+
+  @media screen and (max-width: $mdMaxWidth) {
+    margin-top: 12px;
+  }
+
+  & + .active-job--button {
+    @media screen and (min-width: $mdMinWidth) {
+      margin-left: 12px;
+    }
+  }
+}

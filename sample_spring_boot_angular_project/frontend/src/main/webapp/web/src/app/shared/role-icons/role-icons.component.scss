@@ -1,0 +1,15 @@
+@import "../../../assets/scss/variables";
+
+.user-role-icons {
+  line-height: 0;
+
+  @media screen and (max-width: $lgMaxWidth) {
+    .user-role-icon:last-child {
+      margin-right: 10px;
+    }
+  }
+}
+
+.user-role-icon + .user-role-icon {
+  margin-left: 7px;
+}

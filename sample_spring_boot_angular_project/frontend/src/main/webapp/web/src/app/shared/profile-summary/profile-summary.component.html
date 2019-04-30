@@ -1,0 +1,66 @@
+<div class="profile-summary main-content-padding container-summary content-wrapper mb-24">
+
+  <div class="push-left profile-summary__left-box">
+    <div class="user-avatar" [ngStyle]="setUserAvatar()"></div>
+
+    <zu-rating-picker [pickerClass]="'small-star-picker'">
+      <bar-rating id="complete-job__rating"
+                  [rate]="profile?.averageFeedback"
+                  [readOnly]="true"
+                  [max]="5"
+                  [theme]="'fontawesome-o'"></bar-rating>
+    </zu-rating-picker>
+
+    <span class="label-rating" *ngIf="profile?.averageFeedback !== 0 && profile?.averageFeedback !== null">Average rating: <span class="bold">{{profile?.averageFeedback}}</span></span>
+
+    <span class="label-rating rating-number" *ngIf="profile?.averageFeedback === 0 || profile?.averageFeedback === null">NEW ZU-CREW</span>
+  </div>
+
+  <div class="user-info full-width-xs user-summary">
+
+    <div class="user-names mb-12">{{getFullUserName() || ''}}
+      <span class="business-name">(<span class="blue">{{profile?.businessName}}</span>)</span></div>
+
+    <div class="flex flex-justify-space-between flex-wrap">
+
+      <div class="base-info-box">
+
+        <zu-role-icons [roles]="profile?.roles"></zu-role-icons>
+
+        <span *ngIf="profile?.experience" class="experience-label flex flex-align-center">{{getUserExperience()}}</span>
+      </div>
+
+      <div class="flex flex-align-center location-label" *ngIf="profile?.address">
+        <i class="material-icons location-icon">location_on</i>
+        <span>{{profile?.address}}</span>
+      </div>
+    </div>
+
+    <div class="accordion" [ngClass]="{'open': open}" *ngIf="profile?.publicBio">
+      <div class="accordion__description">
+        {{profile?.publicBio}}
+      </div>
+
+      <button type="button" class="accordion__button" (click)="open = !open" [ngStyle]="{'margin-bottom.px': -offset}">
+        <span class="accordion__button-icon">
+          <svg width="10px" height="5px" viewBox="0 0 10 5" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <title>Accordion button</title>
+            <desc>Created with sketchtool.</desc>
+            <defs></defs>
+            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="icons" transform="translate(-335.000000, -213.000000)" fill="#000000" fill-rule="nonzero">
+                    <g id="Group-2" transform="translate(43.000000, 206.000000)">
+                        <polygon id="Shape-Copy-3" points="292 7 297 12 302 7"></polygon>
+                    </g>
+                </g>
+            </g>
+          </svg>
+        </span>
+      </button>
+
+    </div>
+
+    <div *ngIf="showAccordion === false || isAccordion === false" class="user-bio mt-24">{{profile?.publicBio}}</div>
+
+  </div>
+</div>

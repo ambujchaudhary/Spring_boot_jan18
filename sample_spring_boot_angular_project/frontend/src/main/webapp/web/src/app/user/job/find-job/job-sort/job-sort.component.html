@@ -1,0 +1,12 @@
+<button mat-button class="button-sort" (click)="applySortDate($event)">
+
+  <zu-sort-icons [key]="setActiveSorkKey(JobSortKeyEnum.DATE)" [arrow]="setActiveArrow()"
+                 class="sort-icons--wrapper"></zu-sort-icons>
+  DATE
+</button>
+<button mat-button class="button-sort" (click)="applySortJobType($event)">
+
+  <zu-sort-icons [key]="setActiveSorkKey(JobSortKeyEnum.JOB_TYPE)" [arrow]="setActiveArrow()"
+                 class="sort-icons--wrapper"></zu-sort-icons>
+  JOB TYPE
+</button>

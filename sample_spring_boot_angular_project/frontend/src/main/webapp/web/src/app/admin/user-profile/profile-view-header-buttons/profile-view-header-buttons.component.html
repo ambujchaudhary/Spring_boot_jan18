@@ -1,0 +1,67 @@
+<div class="action-buttons-wrapper">
+  <div class="action-buttons-box">
+    <button class="action-button"
+            matTooltip="{{editTooltipMessage}}"
+            [matTooltipPosition]="tooltipPosition"
+            [disabled]="isRequestInProgress"
+            [routerLink]="[getLinkForEditProfile()]">
+      <svg width="17px" height="17px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs></defs>
+        <g id="Business" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="Create-Job-Desktop" transform="translate(-984.000000, -655.000000)" fill="#A8A8A8" fill-rule="nonzero">
+            <g id="Group-12" transform="translate(963.000000, 642.000000)">
+              <path
+                  d="M30.5944681,15.1900416 C30.8057523,14.9787575 30.8057523,14.6266172 30.5944681,14.4261681 L29.3267631,13.1584631 C29.1263141,12.947179 28.7741738,12.947179 28.5628896,13.1584631 L27.5660618,14.1498734 L29.5976403,16.181452 L30.5944681,15.1900416 Z M21,20.7213527 L21,22.7529313 L23.0315785,22.7529313 L29.0233808,16.7557115 L26.9918022,14.724133 L21,20.7213527 Z"
+                  id="pen"></path>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </button>
+
+    <button class="action-button"
+            matTooltip="Unblock user"
+            [matTooltipPosition]="tooltipPosition"
+            (click)="unblockUser()"
+            [disabled]="isRequestInProgress"
+            *ngIf="user?.blocked === true">
+      <svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs></defs>
+        <g id="Admin-Panel" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="User-Profile-Admin-Unblock" transform="translate(-1163.000000, -106.000000)" fill="#A8A8A8" fill-rule="nonzero">
+            <g id="account-clock" transform="translate(1154.000000, 98.000000)">
+              <g id="noun_Unlock_1926243" transform="translate(9.000000, 8.000000)">
+                <path d="M12.8333333,5.71428571 L11.6666667,5.71428571 L11.6666667,4.57142857 C11.6666667,2.04685714 9.57716667,0 7,0 C4.82766667,0 3.01816667,1.46057143 2.49783333,3.42857143 L4.3295,3.42857143 C4.78216667,2.42171429 5.8065,1.71428571 7,1.71428571 C8.60883333,1.71428571 9.91666667,2.99542857 9.91666667,4.57142857 L9.91666667,5.71428571 L1.16666667,5.71428571 C0.522666667,5.71428571 0,6.22628571 0,6.85714286 L0,14.8571429 C0,15.488 0.522666667,16 1.16666667,16 L12.8333333,16 C13.4773333,16 14,15.488 14,14.8571429 L14,6.85714286 C14,6.22628571 13.4773333,5.71428571 12.8333333,5.71428571 Z M7,11.4285714 C6.356,11.4285714 5.83333333,10.9165714 5.83333333,10.2857143 C5.83333333,9.65485714 6.356,9.14285714 7,9.14285714 C7.644,9.14285714 8.16666667,9.65485714 8.16666667,10.2857143 C8.16666667,10.9165714 7.644,11.4285714 7,11.4285714 Z"
+                      id="Shape"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </button>
+
+    <button class="action-button action-button__block"
+            matTooltip="Block user"
+            [matTooltipPosition]="tooltipPosition"
+            (click)="blockUser()"
+            [disabled]="isRequestInProgress"
+            *ngIf="user?.blocked === false">
+      <svg width="17px" height="18px" viewBox="0 0 23 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs></defs>
+        <g id="Admin-Panel" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="User-Profile-View" transform="translate(-1159.000000, -106.000000)">
+            <g id="account-clock" transform="translate(1154.000000, 98.000000)">
+              <g id="block-user" transform="translate(5.000000, 8.000000)">
+                <path d="M9.63,10.1 C11.23,6.58 15.38,5.03 18.9,6.63 C22.42,8.23 23.97,12.38 22.37,15.9 C21.24,18.4 18.75,20 16,20 C13.3,20 10.83,18.44 9.67,16 L0,16 L0,14 C0.06,12.86 0.84,11.93 2.34,11.18 C3.84,10.43 5.72,10.04 8,10 C8.57,10 9.11,10.05 9.63,10.1 Z M8,0 C9.12,0.03 10.06,0.42 10.81,1.17 C11.56,1.92 11.93,2.86 11.93,4 C11.93,5.14 11.56,6.08 10.81,6.83 C10.06,7.58 9.12,7.95 8,7.95 C6.88,7.95 5.94,7.58 5.19,6.83 C4.44,6.08 4.07,5.14 4.07,4 C4.07,2.86 4.44,1.92 5.19,1.17 C5.94,0.42 6.88,0.03 8,0 Z M16,18 C18.7614237,18 21,15.7614237 21,13 C21,10.2385763 18.7614237,8 16,8 C13.2385763,8 11,10.2385763 11,13 C11,15.7614237 13.2385763,18 16,18 Z"
+                      id="Shape"
+                      fill="#A8A8A8"
+                      fill-rule="nonzero"></path>
+                <path d="M12.5,16.5 L20.5,9.5" id="Line-3" stroke="#A8A8A8" stroke-width="2" stroke-linecap="square"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </button>
+  </div>
+</div>

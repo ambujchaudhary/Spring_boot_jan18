@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+  <Properties>
+    <Property name="logPath">logs</Property>
+  </Properties>
+
+  <Appenders>
+
+    <RollingFile name="RollingFile" fileName="${logPath}/app.log"
+        filePattern="${logPath}/$${date:yyyy-MM-dd}/app-%d{MM-dd}-%i.log">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+        <SizeBasedTriggeringPolicy size="10 MB" />
+      </Policies>
+      <DefaultRolloverStrategy max="100">
+        <Delete basePath="${logPath}" maxDepth="2">
+          <IfFileName glob="*/app-*.log">
+            <IfLastModified age="30d">
+              <IfAny>
+                <IfAccumulatedFileSize exceeds="250 MB" />
+                <IfAccumulatedFileCount exceeds="10" />
+              </IfAny>
+            </IfLastModified>
+          </IfFileName>
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+
+    <Console name="ConsoleAppender" target="SYSTEM_OUT">
+      <PatternLayout>
+        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level}{FATAL=white, ERROR=red, WARN=yellow, INFO=green, DEBUG=green, TRACE=blue} %highlight{%pid}{INFO=Magenta} [%t] %highlight{%c{10}}{INFO=Cyan} : %msg%n</pattern>
+      </PatternLayout>
+    </Console>
+
+  </Appenders>
+
+  <Loggers>
+    <Root level="debug" additivity="false">
+      <AppenderRef ref="ConsoleAppender" level="info" />
+      <AppenderRef ref="RollingFile" level="info" />
+    </Root>
+
+  </Loggers>
+</Configuration>

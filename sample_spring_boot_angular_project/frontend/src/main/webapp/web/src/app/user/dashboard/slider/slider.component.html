@@ -1,0 +1,18 @@
+<div class="slider-container"
+     (mouseenter)="clearInterval()"
+     (mouseleave)="setInterval()">
+
+  <zu-app-slide class="max-width" [hidden]="activeSlide === 2"></zu-app-slide>
+
+  <zu-podcast-slide class="max-width" [hidden]="activeSlide === 1"></zu-podcast-slide>
+
+  <div class="dots-container">
+    <div class="dot"
+         (click)="changeSlide(true)"
+         [ngClass]="activeSlide === 1 ? 'active' : ''"></div>
+
+    <div class="dot"
+         (click)="changeSlide(true)"
+         [ngClass]="activeSlide === 2 ? 'active' : ''"></div>
+  </div>
+</div>

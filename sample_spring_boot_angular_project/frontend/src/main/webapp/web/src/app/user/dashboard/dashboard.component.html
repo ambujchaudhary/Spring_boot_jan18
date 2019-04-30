@@ -1,0 +1,21 @@
+<zu-header></zu-header>
+
+<div class="dashboard-wrapper">
+  <div class="dashboard-container container">
+
+    <zu-weather-forecast></zu-weather-forecast>
+
+    <zu-slider *ngIf="mobile === false"></zu-slider>
+
+    <div class="flex flex-justify-space-between flex-wrap mt-48">
+      <zu-statistics class="statistics-block full-width-xs" [statisticsType]="dashboardStatisticsTypeEnum.BE_CREW"></zu-statistics>
+
+      <zu-statistics class="statistics-block full-width-xs" [statisticsType]="dashboardStatisticsTypeEnum.FIND_CREW"></zu-statistics>
+    </div>
+
+    <div class="chat-wrapper" *ngIf="mobile === false">
+      <zu-chat></zu-chat>
+    </div>
+
+  </div>
+</div>

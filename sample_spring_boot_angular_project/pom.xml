@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.shootzu2</groupId>
+  <artifactId>Shootzu</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Shootzu</name>
+  <description>Shootzu Parent Project</description>
+
+  <properties>
+    <java.version>10</java.version>
+    <maven.compiler.source>10</maven.compiler.source>
+    <maven.compiler.target>10</maven.compiler.target>
+    <!--<sonar.host.url>https://78.154.162.42:8822</sonar.host.url>-->
+    <sonar.host.url>http://192.168.254.59</sonar.host.url>
+    <sonar.sources>src/main/,src/test</sonar.sources>
+    <sonar.java.binaries>/home/sombra-61/work/shootzu/backend/target/classes</sonar.java.binaries>
+    <sonar.junit.reportPaths>backend/target/surefire-reports</sonar.junit.reportPaths>
+    <!--<sonar.ts.coverage.lcovReportPath>src/main/webapp/coverage/lcov.info</sonar.ts.coverage.lcovReportPath>-->
+    <sonar.typescript.lcov.reportPaths>src/main/webapp/coverage/lcov.info</sonar.typescript.lcov.reportPaths>
+    <sonar.exclusions>
+      src/main/webapp/coverage/**,
+      src/main/webapp/dist/**,
+      src/main/webapp/node/**,
+      src/main/webapp/node_modules/**,
+      src/main/resources/static/**,
+      src/main/webapp/platforms/**,
+      src/main/webapp/plugins/**,
+      src/main/webapp/mobile/src/coverage/**
+    </sonar.exclusions>
+    <sonar.projectVersion>1.2.3</sonar.projectVersion>
+    <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.sonarsource.scanner.maven</groupId>
+      <artifactId>sonar-maven-plugin</artifactId>
+      <version>3.4.1.1168</version>
+    </dependency>
+  </dependencies>
+  <modules>
+    <module>frontend</module>
+    <module>backend</module>
+  </modules>
+
+</project>

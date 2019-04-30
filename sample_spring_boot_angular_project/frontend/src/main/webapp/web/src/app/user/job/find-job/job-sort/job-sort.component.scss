@@ -1,0 +1,30 @@
+@import "../../../../../assets/scss/core";
+@import "../../../../../assets/scss/variables";
+
+.button-sort {
+  // TODO mobile devices optimization
+  color:                   $color-grey-light;
+  border-top-right-radius: 5px;
+  border-top-left-radius:  5px;
+  font-family:             $font-sf-light;
+  letter-spacing:          0.08px;
+  padding:                 0 7px;
+  max-width:               66px;
+  width:                   66px;
+
+  & + .button-sort {
+    margin-left: 2px;
+  }
+}
+
+.default-arrow {
+  fill: $color-grey-light;
+}
+
+.active-arrow {
+  fill: $color-blue;
+}
+
+.sort-icons--wrapper {
+  display: inline-grid;
+}

@@ -1,0 +1,50 @@
+@import "../../../assets/scss/variables";
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.icon-filter {
+  vertical-align: text-bottom;
+
+  &--opened {
+    transform: rotate(180deg);
+  }
+}
+
+.review-wrapper {
+  padding: 20px 30px;
+
+  &:hover {
+    box-shadow: 0 3px 21px 0 rgba(0, 0, 0, 0.04);
+  }
+
+  &:last-child {
+    border-bottom: 1px solid #A8A8A81A;
+  }
+}
+
+.feedback-review {
+  color:       $color-grey;
+  font-family: $font-sf-light;
+  font-size:   16px;
+  white-space: pre-wrap;
+}
+
+.feedback-date {
+  color:       $color-grey-dark;
+  font-family: $font-sf-light;
+  font-size:   14px;
+  display:     block;
+}
+
+.feedback-header {
+  padding:       13px 30px;
+  border-bottom: 1px solid #A8A8A81A;
+}
+
+.ownertype-label {
+  font-family: $font-sf-light;
+  font-size:   14px;
+  color:       $color-grey-dark;
+}

@@ -1,0 +1,1 @@
+drop table applicant_job;

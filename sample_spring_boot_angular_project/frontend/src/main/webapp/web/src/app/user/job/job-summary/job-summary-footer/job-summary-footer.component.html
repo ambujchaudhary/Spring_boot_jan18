@@ -1,0 +1,102 @@
+<div class="mt-12 flex flex-align-center flex-wrap flex-justify-space-between">
+  <div class="flex flex-align-center flex-wrap">
+    <ng-container *ngIf="job?.ownerType !== ''">
+      <span class="footer-text full-width-xs">By {{job?.ownerType}}</span>
+      <span class="vertical-line-block vertical-line-block-footer hide-xs"></span>
+    </ng-container>
+
+    <span class="footer-text mr-8">
+          <svg class="vertical-align-middle" width="14px" height="14px" viewBox="0 0 38 38" version="1.1">
+      <defs></defs>
+      <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons" transform="translate(-230.000000, -34.000000)" fill="#4DA1FF" fill-rule="nonzero">
+          <g id="Group-4" transform="translate(231.000000, 35.000000)">
+            <path
+                d="M18.3333333,0 C13.5253517,0 9.00512232,1.87233028 5.60543425,5.27210092 C2.20574618,8.67187156 0.333333333,13.1921009 0.333333333,18 C0.333333333,22.8078991 2.20566361,27.328211 5.60543425,30.7278991 C9.00520489,34.1275872 13.5253517,36 18.3333333,36 C23.141315,36 27.6615443,34.1276697 31.0612324,30.7278991 C34.4609205,27.3281284 36.3333333,22.8078991 36.3333333,18 C36.3333333,13.1921009 34.4610031,8.67178899 31.0612324,5.27210092 C27.6614618,1.87241284 23.141315,0 18.3333333,0 Z M18.3333333,34.3486239 C9.31863609,34.3486239 1.98470948,27.0146972 1.98470948,18 C1.98470948,8.98530275 9.31863609,1.65137615 18.3333333,1.65137615 C27.3480306,1.65137615 34.6819572,8.98530275 34.6819572,18 C34.6819572,27.0146972 27.3480306,34.3486239 18.3333333,34.3486239 Z"
+                id="Shape" stroke="#4DA1FF"></path>
+            <path
+                d="M19.0170856,17.6579174 L19.0170856,10.4431376 C19.0170856,9.98719266 18.6474251,9.61744954 18.1913976,9.61744954 C17.73537,9.61744954 17.3657095,9.98719266 17.3657095,10.4431376 L17.3657095,18 C17.3657095,18.2189725 17.452737,18.428945 17.6075535,18.583844 L21.2978838,22.2741743 C21.4591407,22.4353486 21.6704343,22.5160183 21.8817278,22.5160183 C22.0930214,22.5160183 22.3043976,22.4353486 22.4655719,22.2741743 C22.7880031,21.9517431 22.7880031,21.4289174 22.4655719,21.1064037 L19.0170856,17.6579174 Z"
+                id="Shape"></path>
+          </g>
+        </g>
+      </g>
+    </svg>
+
+      {{job?.numberOfHour}} Hours</span>
+
+    <span class="footer-text mr-8">
+          <svg class="vertical-align-middle" width="14px" height="14px" viewBox="0 0 18 36" version="1.1">
+      <defs></defs>
+      <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons" transform="translate(-313.000000, -36.000000)" fill="#56A6FF" fill-rule="nonzero">
+          <path
+              d="M327.494956,46.9154206 C327.296869,45.2520745 326.776497,44.0187717 325.944845,43.2132085 C325.110048,42.409949 323.909734,42.0060155 322.344688,42.0060155 C320.71204,42.0060155 319.44491,42.4153246 318.530722,43.2354786 C317.614961,44.0525608 317.155902,45.1952473 317.155902,46.6581625 C317.155902,47.9598114 317.583519,49.0003626 318.423032,49.7706009 C319.253111,50.530856 320.672737,51.164402 322.68741,51.6858295 C325.490502,52.4046161 327.577492,53.4413277 328.957815,54.7982679 C330.319272,56.1421532 331,57.8193221 331,59.8274707 C331,62.2633589 330.157343,64.2569167 328.463383,65.8150558 C327.173457,67.0122656 325.573824,67.745643 323.67313,68.0105804 L323.67313,72 L320.4267,72 L320.4267,68.0282429 C318.541727,67.7356599 316.880781,66.9331684 315.445434,65.6161608 C313.824577,64.1102413 313.017293,62.4077305 313,60.5047889 L313.045592,59.8267028 L316.207127,59.8267028 C316.236211,61.6098466 316.751867,62.9852173 317.756452,63.9574223 C318.760252,64.9280915 320.179091,65.4164978 322.007468,65.4164978 C323.835844,65.4164978 325.262544,64.9273235 326.287567,63.9574223 C327.31259,62.9852173 327.824315,61.6359564 327.824315,59.9096397 C327.824315,58.4728343 327.336172,57.3224685 326.353596,56.4570063 C325.366304,55.6038311 323.70693,54.878901 321.373117,54.2791442 C318.90017,53.6417586 317.049784,52.6964312 315.825888,51.4470019 C314.597275,50.1968045 313.988078,48.6186992 313.988078,46.7165255 C313.988078,44.5340558 314.767064,42.7516799 316.330538,41.3701657 C317.486047,40.3449732 318.849862,39.7052838 320.425914,39.4534013 L320.425914,36 L323.672344,36 L323.672344,39.352034 C325.545526,39.5793426 327.077558,40.2359265 328.277872,41.3263935 C329.764313,42.6841016 330.565309,44.5448068 330.677715,46.9146526 L327.494956,46.9146526 L327.494956,46.9154206 Z"
+              id="Shape"></path>
+        </g>
+      </g>
+    </svg>
+
+      {{job?.pricePerHour}}<span class="slash">/</span>hour</span>
+
+    <span class="oval mr-8 hide-xs"></span>
+
+    <span class="footer-text">{{amount | currency:'$'}} total</span>
+
+  </div>
+
+  <!--Owner/ shooter message and complete job buttons-->
+  <div class="active-job-buttons">
+    <button type="button"
+            class="button-small button-small--link active-job--button"
+            mat-raised-button
+            *ngIf="askQuestion === true"
+            (click)="openSendMessageModal();$event.stopPropagation();"
+            [disabled]="isButtonDisabled">
+      <span>Ask a Question </span>
+      <svg class="ml-2" width="18px" height="18px" viewBox="0 0 25 25" version="1.1">
+        <defs></defs>
+        <g id="Business" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="User-Profile-Review" transform="translate(-209.000000, -1076.000000)" fill="#67C6B4" fill-rule="nonzero">
+            <g id="Group-5" transform="translate(181.000000, 1062.000000)">
+              <g id="message-text" transform="translate(28.000000, 14.000000)">
+                <path d="M22.5,0 L2.5,0 C1.11928813,0 0,1.11928813 0,2.5 L0,25 L5,20 L22.5,20 C23.8807119,20 25,18.8807119 25,17.5 L25,2.5 C25,1.11928813 23.8807119,0 22.5,0 M5,8.75 L20,8.75 L20,11.25 L5,11.25 M15,15 L5,15 L5,12.5 L15,12.5 M20,7.5 L5,7.5 L5,5 L20,5"
+                      id="Shape"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </button>
+
+    <button type="button"
+            class="button-small button-small--link active-job--button"
+            mat-raised-button
+            *ngIf="ownerActiveJobButtons === true"
+            (click)="openSendMessageModal();$event.stopPropagation();"
+            [disabled]="isButtonDisabled">
+      <span>Message Crew </span>
+      <svg class="ml-2" width="18px" height="18px" viewBox="0 0 25 25" version="1.1">
+        <defs></defs>
+        <g id="Business" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="User-Profile-Review" transform="translate(-209.000000, -1076.000000)" fill="#67C6B4" fill-rule="nonzero">
+            <g id="Group-5" transform="translate(181.000000, 1062.000000)">
+              <g id="message-text" transform="translate(28.000000, 14.000000)">
+                <path d="M22.5,0 L2.5,0 C1.11928813,0 0,1.11928813 0,2.5 L0,25 L5,20 L22.5,20 C23.8807119,20 25,18.8807119 25,17.5 L25,2.5 C25,1.11928813 23.8807119,0 22.5,0 M5,8.75 L20,8.75 L20,11.25 L5,11.25 M15,15 L5,15 L5,12.5 L15,12.5 M20,7.5 L5,7.5 L5,5 L20,5"
+                      id="Shape"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </button>
+
+    <button type="button"
+            class="button-small button-small--info active-job--button"
+            mat-raised-button
+            *ngIf="ownerActiveJobButtons === true"
+            [disabled]="isButtonDisabled"
+            (click)="openCompleteJobModal();$event.stopPropagation();">
+      <span>COMPLETE JOB </span>
+    </button>
+  </div>
+</div>

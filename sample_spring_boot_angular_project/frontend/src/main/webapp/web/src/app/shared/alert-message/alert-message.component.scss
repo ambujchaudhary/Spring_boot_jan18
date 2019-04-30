@@ -1,0 +1,32 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+@import "../../../assets/scss/core";
+
+.message-label {
+  font-family: $font-sf-semibold;
+  font-size:   16px;
+}
+
+.message-wrapper {
+  padding:       20px;
+  margin-bottom: 24px;
+  border:        1px solid $color-white-light;
+  border-radius: 5px;
+  background:    $color-white;
+
+  .message-text-block {
+    flex:       1 1 80%;
+    word-break: break-word;
+  }
+
+  .vertical-line-block-small {
+    height:     52px;
+    background: $color-grey-light;
+    margin:     0 35px;
+  }
+}
+
+.attention-icon {
+  color:     $color-purple;
+  font-size: 35px;
+}

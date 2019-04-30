@@ -1,0 +1,58 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+
+$border-radius: 5px;
+
+.date-cell {
+  border-bottom-right-radius: $border-radius;
+  border-top-right-radius:    $border-radius;
+}
+
+.after-line {
+  &:after {
+    content:     '|';
+    display:     inline-block;
+    margin:      0 19px;
+    font-family: $font-sf-light;
+  }
+}
+
+.job-item-user {
+  color: $color-grey-light;
+}
+
+.job-item-price {
+  color:       $color-black;
+  font-family: $font-sf-semibold;
+}
+
+.job-item-title {
+  font-family: $font-sf-normal;
+  color:       $color-black;
+}
+
+.job-item-date {
+  font-family: $font-dual;
+}
+
+.input-filter {
+  min-width:     445px;
+  height:        32px;
+  border-radius: 5px;
+  background:    $color-white-darkest url("../../../assets/images/input-icons/search_icon.svg") no-repeat 2%;
+  border:        none;
+  display:       block;
+  margin:        24px auto;
+  padding:       0 20px 0 30px;
+  font-family:   $font-sf-light;
+
+  @media screen and (max-width: $xsMaxWidth) {
+    min-width: 100%;
+  }
+}
+
+.all-jobs-row {
+  &:hover {
+    cursor: pointer;
+  }
+}

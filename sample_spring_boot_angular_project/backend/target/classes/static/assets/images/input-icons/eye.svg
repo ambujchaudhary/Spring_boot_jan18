@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="20px" viewBox="0 0 21 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>eye</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Settings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Settings-Change-password" transform="translate(-812.000000, -384.000000)" fill="#7F7F7F" fill-rule="nonzero">
+            <g id="Group-3" transform="translate(283.000000, 191.000000)">
+                <g id="Group-10" transform="translate(237.000000, 171.000000)">
+                    <g id="eye" transform="translate(292.000000, 22.000000)">
+                        <path d="M10.5,4.2 C8.91845731,4.2 7.63636364,5.4536027 7.63636364,7 C7.63636364,8.5463973 8.91845731,9.8 10.5,9.8 C12.0815427,9.8 13.3636364,8.5463973 13.3636364,7 C13.3636364,5.4536027 12.0815427,4.2 10.5,4.2 Z M10.5,11.6666667 C7.86409551,11.6666667 5.72727273,9.57732883 5.72727273,7 C5.72727273,4.42267117 7.86409551,2.33333333 10.5,2.33333333 C13.1359045,2.33333333 15.2727273,4.42267117 15.2727273,7 C15.2727273,9.57732883 13.1359045,11.6666667 10.5,11.6666667 Z M10.5,0 C5.72727273,0 1.65136364,2.90266667 0,7 C1.65136364,11.0973333 5.72727273,14 10.5,14 C15.2727273,14 19.3486364,11.0973333 21,7 C19.3486364,2.90266667 15.2727273,0 10.5,0 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+<mat-form-field class="input input-chips mb-24">
+  <mat-chip-list #chipList class="mat-chip-list" aria-orientation="horizontal" role="listbox">
+    <mat-chip *ngFor="let chipItem of list"
+              role="option"
+              [attr.aria-label]="chipItem"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="removeChips(chipItem)">
+      {{chipItem}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+
+    <input title="Equipment list"
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="chipsSeparatorKeysCodes"
+           (matChipInputTokenEnd)="addChips($event)"
+           maxlength="255"/>
+  </mat-chip-list>
+</mat-form-field>

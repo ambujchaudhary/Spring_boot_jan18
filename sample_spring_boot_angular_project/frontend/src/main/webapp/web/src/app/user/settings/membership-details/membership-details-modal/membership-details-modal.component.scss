@@ -1,0 +1,8 @@
+@import "../../../../../assets/scss/variables";
+
+.confirm-dialog-button {
+  @media screen and (max-width: $xsMaxWidth) {
+    margin: 10px 0 !important;
+    width:  100% !important;
+  }
+}

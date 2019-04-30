@@ -1,0 +1,11 @@
+${AnsiColor.BRIGHT_BLUE}
+${AnsiColor.BRIGHT_BLUE} ######  ##     ##  #######   #######  ######## ######## ##     ##
+${AnsiColor.BRIGHT_BLUE}##    ## ##     ## ##     ## ##     ##    ##         ##  ##     ##
+${AnsiColor.BRIGHT_BLUE}##       ##     ## ##     ## ##     ##    ##        ##   ##     ##
+${AnsiColor.BRIGHT_BLUE} ######  ######### ##     ## ##     ##    ##       ##    ##     ##
+${AnsiColor.BRIGHT_BLUE}      ## ##     ## ##     ## ##     ##    ##      ##     ##     ##
+${AnsiColor.BRIGHT_BLUE}##    ## ##     ## ##     ## ##     ##    ##     ##      ##     ##
+${AnsiColor.BRIGHT_BLUE} ######  ##     ##  #######   #######     ##    ########  #######
+${AnsiColor.BRIGHT_BLUE}
+${AnsiColor.GREEN}:: Shootzu 🤓 backend server  :: Running Spring Boot ${spring-boot.version} ::
+${AnsiColor.DEFAULT}

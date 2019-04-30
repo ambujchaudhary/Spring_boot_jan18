@@ -1,0 +1,22 @@
+@import "../../../../assets/scss/variables";
+
+.application-model-content {
+  margin: 5vh auto 4vh;
+
+  .application-modal-info {
+    color:       $color-grey-dark-1;
+    font-family: $font-sf-light;
+    font-size:   14px;
+    line-height: 19px;
+  }
+}
+
+.second-header {
+  font-size: 16px;
+  max-width: 395px;
+  margin:    0 auto;
+}
+
+.tip {
+  color: $color-grey-1;
+}

@@ -1,0 +1,11 @@
+<div class="flex flex-justify-space-between flex-align-center flex-wrap mt-16">
+  <div class="description-container align-self-start">
+    {{setDescription()}}
+  </div>
+
+  <div class="flex flex-align-center flex-direction-column applicants-wrapper" *ngIf="hideApplicants !== true">
+    <span class="big-number">{{applicants}}</span>
+    Applicants
+    <a (click)="$event.stopPropagation();" [routerLink]="['/job', id, 'view']" [queryParams]="{applicants: true}" class="blue">view ></a>
+  </div>
+</div>

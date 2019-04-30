@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shootzu | Ionic App</title>
+
+  <base href="/" />
+
+  <link rel="stylesheet" href="assets/scss/fonts.css">
+
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png">
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Google Maps -->
+  <script type="text/javascript">
+    'use strict';
+
+    var googleMapKey;
+    var stageServer = window.location.hostname === '13.211.150.23';
+
+    if (stageServer === true) {
+      googleMapKey = 'AIzaSyAgY8PnB0TQaCVQOCpx8xIE3xovh7kFqEY';
+    } else {
+      googleMapKey = 'AIzaSyAgY8PnB0TQaCVQOCpx8xIE3xovh7kFqEY';
+    }
+
+    var googleMapScript = document.createElement('script');
+    googleMapScript.setAttribute('defer', 'defer');
+    googleMapScript.setAttribute('async', 'async');
+    googleMapScript.src = '//maps.googleapis.com/maps/api/js?key=' + googleMapKey + '&libraries=places&language=en-US&region=us';
+    document.getElementsByTagName('head')[0].appendChild(googleMapScript);
+  </script>
+  <!-- End Google Maps -->
+
+  <!-- Google Social API -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- End Google Social API -->
+
+  <!-- Stripe Maps -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <!-- Chargebee -->
+  <script src="https://js.chargebee.com/v2/chargebee.js" data-cb-site="shootzu"></script>
+  <script type="text/javascript">
+    'use strict';
+    var stripe   = Stripe('pk_live_QLOxckJCQjkaKuL9VHHGgChU');
+    var elements = stripe.elements();
+  </script>
+  <!-- End Stripe Maps -->
+
+  <!-- Intercom Maps -->
+  <script>
+    (function () {
+      var w  = window;
+      var ic = w.Intercom;
+      if (typeof ic === 'function') {
+        ic('reattach_activator');
+        ic('update', intercomSettings);
+      } else {
+        var d      = document;
+        var i      = function () {i.c(arguments);};
+        i.q        = [];
+        i.c        = function (args) {i.q.push(args);};
+        w.Intercom = i;
+
+        function l() {
+          var s   = d.createElement('script');
+          s.type  = 'text/javascript';
+          s.async = true;
+          s.src   = 'https://widget.intercom.io/widget/ewu3cku7';
+          var x   = d.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+        }
+
+        if (w.attachEvent) {
+          w.attachEvent('onload', l);
+        } else {
+          w.addEventListener('load', l, false);
+        }
+      }
+    })();
+  </script>
+  <!-- End Intercom Maps -->
+
+</head>
+<body>
+<zum-root></zum-root>
+</body>
+</html>

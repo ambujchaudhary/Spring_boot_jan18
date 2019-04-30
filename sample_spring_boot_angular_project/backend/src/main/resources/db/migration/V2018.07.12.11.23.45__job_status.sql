@@ -1,0 +1,1 @@
+alter table job add column job_status varchar(30) null;

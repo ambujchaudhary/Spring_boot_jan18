@@ -1,0 +1,29 @@
+@import "../../../../assets/scss/variables";
+
+.vertical-line-block-for-job {
+  height:     98px;
+  background: $color-blue-1;
+  margin:     0 30px;
+}
+
+.job-header-box {
+  flex: 1;
+}
+
+.job-info-box {
+  position: relative;
+
+  &.active {
+    background-color: $color-green-light;
+
+    ::ng-deep {
+      .label-date-top {
+        color: $color-grey-lighter;
+      }
+
+      .button-small--link:hover {
+        background-color: $color-grey-light-for-chips;
+      }
+    }
+  }
+}

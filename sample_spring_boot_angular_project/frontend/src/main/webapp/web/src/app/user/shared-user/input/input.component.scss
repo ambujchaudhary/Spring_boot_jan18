@@ -1,0 +1,11 @@
+.box-column {
+  flex-direction: column;
+  padding:        8px;
+  max-width:      32px;
+}
+
+.small {
+  .box-column {
+    padding: 5px;
+  }
+}

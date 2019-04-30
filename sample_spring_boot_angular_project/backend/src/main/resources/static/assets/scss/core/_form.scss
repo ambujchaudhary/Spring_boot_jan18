@@ -1,0 +1,287 @@
+@import "../variables";
+@import "../mixins";
+
+.label {
+  display:        block;
+  color:          $color-black;
+  font-family:    $font-sf-light;
+  letter-spacing: -0.22px;
+  font-size:      14px;
+
+  .top-label {
+    text-transform: uppercase;
+    line-height:    1.5;
+    font-family:    $font-sf-semibold;
+  }
+
+  &.small {
+    font-family: $font-dual;
+
+    & + .small {
+      margin-right: 20px;
+    }
+  }
+
+  &-big {
+    font-size:   16px;
+    font-family: $font-sf-semibold;
+  }
+}
+
+/*****************
+ *
+ * Form controls
+ *
+ ****************/
+
+select {
+  height: 56px;
+}
+
+.input-field {
+  display:       block;
+  border:        none;
+  border-radius: 5px;
+  color:         $color-white;
+  text-indent:   60px;
+}
+
+.input-container,
+.button {
+  @include button-field;
+  min-width: 328px;
+}
+
+//TODO refactor
+.sign-in-btn {
+  background:     $color-blue-3;
+  color:          $color-white;
+  font-weight:    bold;
+  text-transform: uppercase;
+
+  &:hover:enabled {
+    background: $color-blue-dark;
+  }
+}
+
+.back-btn {
+  background:     $color-grey-4;
+  color:          $color-white;
+  font-weight:    bold;
+  text-transform: uppercase;
+
+  &:hover:enabled {
+    background-color: $color-grey-5;
+  }
+}
+
+.btn {
+  width:          156px;
+  height:         56px;
+  border-radius:  4px;
+  font-size:      19px;
+  letter-spacing: 0.36px;
+  box-shadow:     none;
+  cursor:         pointer;
+  border:         0;
+
+  @media screen and (max-width: $smMaxWidth) {
+    width:     125px;
+    font-size: 16px;
+  }
+}
+
+.input {
+  @include input-field;
+  border:           1px solid $color-white-light;
+  padding-left:     40px;
+  background-color: $color-white;
+  color:            $color-grey;
+
+  @include placeholder {
+    color: $color-grey-dark;
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color:     $color-google;
+    background-color: $color-google-light;
+  }
+
+  &.url-input-box {
+    min-width:     100%;
+    padding-right: 50px;
+    border-radius: 3px;
+  }
+
+  &.input-chips {
+    padding-left:  18px;
+    border-radius: 5px;
+  }
+
+  &.input-profile-data {
+    font-family:   $font-sf-normal;
+    font-size:     14px;
+    padding-left:  18px;
+    border-radius: 5px;
+
+    &.url-input-box {
+      color:       $color-blue-lighten;
+      font-size:   16px;
+      font-family: $font-dual;
+    }
+  }
+}
+
+.input-group {
+  position:      relative;
+  display:       flex;
+  align-items:   stretch;
+  width:         100%;
+  max-height:    56px;
+  padding-right: 5px;
+
+  .input {
+    flex:          1 1 auto;
+    width:         1%;
+    min-width:     1%;
+    border-radius: 5px;
+    padding-left:  18px;
+
+    &:not(:first-child) {
+      border-top-left-radius:    0;
+      border-bottom-left-radius: 0;
+    }
+    &:not(:last-child) {
+      border-top-right-radius:    0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__prepend {
+    margin-right:               -1px;
+    margin-left:                -1px;
+    border:                     1px solid $color-white-light;
+    border-top-left-radius:     5px;
+    border-bottom-left-radius:  5px;
+    border-top-right-radius:    0;
+    border-bottom-right-radius: 0;
+    display:                    block;
+    overflow:                   hidden;
+  }
+
+  &__append {
+    margin-left:                -1px;
+    border:                     1px solid $color-white-light;
+    border-top-left-radius:     0;
+    border-bottom-left-radius:  0;
+    border-top-right-radius:    5px;
+    border-bottom-right-radius: 5px;
+    display:                    block;
+    overflow:                   hidden;
+    background:                 $color-blue;
+  }
+
+  &__text {
+    display:          flex;
+    align-items:      center;
+    padding:          17px;
+    margin-bottom:    0;
+    font-size:        1rem;
+    font-weight:      400;
+    line-height:      1.5;
+    color:            $color-white;
+    text-align:       center;
+    white-space:      nowrap;
+    background-color: $color-blue;
+    border:           none;
+
+    &--button {
+      border:      none;
+      background:  transparent;
+      color:       $color-white;
+      font-size:   12px;
+      line-height: 1.5;
+    }
+  }
+
+  &.small {
+    max-height: 40px;
+
+    .input {
+      min-height:  40px;
+      height:      40px;
+      font-size:   14px;
+      font-family: $font-sf-light;
+    }
+
+    .input-group__text {
+      padding: 9px;
+    }
+
+    .input-group__text--button {
+      line-height: normal;
+    }
+  }
+}
+
+.input-transparent {
+  $el-font-color: $color-white;
+  @include input-field;
+  border:        none;
+  border-radius: 5px;
+  padding-left:  60px;
+  color:         $el-font-color;
+  min-width:     328px;
+  font-size:     18px;
+
+  @include placeholder {
+    color: $el-font-color;
+  }
+
+  &.placeholder-big {
+    font-size: 18px;
+  }
+}
+
+.input-blue {
+  $el-font-color: $color-grey-1;
+  @include input-field;
+  border:        1px solid $color-blue_opacity-30;
+  border-radius: 5px;
+  padding-left:  60px;
+  color:         $el-font-color;
+  min-width:     328px;
+
+  @include placeholder {
+    color: $el-font-color;
+  }
+
+  &.placeholder-big {
+    font-size: 18px;
+  }
+}
+
+.budget {
+  $el-size: 15px;
+  width:           $el-size;
+  height:          $el-size;
+  display:         flex;
+  background:      $color-coral-1;
+  border-radius:   50px;
+  color:           $color-white;
+  font-size:       11px;
+  align-items:     center;
+  justify-content: center;
+  font-family:     $font-sf-light;
+
+  &.big {
+    $el-size: 18px;
+    width:       $el-size;
+    height:      $el-size;
+    line-height: $el-size;
+    font-size:   10px;
+  }
+
+  &--squre {
+  }
+}

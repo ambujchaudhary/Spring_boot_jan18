@@ -1,0 +1,308 @@
+<zu-header></zu-header>
+
+<zu-intro-header
+    [title]="introHeader.title"
+    [subTitle]="introHeader.subTitle"
+    [description]="introHeader.description"
+    [background]="1"
+></zu-intro-header>
+
+<section class="flex main-height admin-page-backgroud">
+  <mat-card class="full-width">
+    <mat-card-content class="main-content-padding">
+
+      <div class="flex flex-justify-space-between flex-wrap flex-align-stretch">
+
+        <div class="flex-element sidebar mb-24-xs full-width-xs" [formGroup]="userProfileForm">
+
+          <label class="profile-photo-box flex flex-justify-space-center flex-align-center mb-24"
+                 [ngStyle]="getPhotoStyle()"
+                 [ngClass]="{'profile-photo-uploaded': profilePhoto.url && profilePhoto.isLoading === false}">
+            <input id="profile-photo" type="file" [hidden]="true" (change)="uploadProfilePhoto($event)" [accept]="getProfilePhotoAccept()">
+
+            <h2 class="profile-photo-title align-center"
+                [hidden]="profilePhoto.url || (!profilePhoto.url && profilePhoto.isLoading === true)">
+              Upload a Profile Photo
+            </h2>
+
+            <h2 class="profile-photo-title align-center" [hidden]="profilePhoto.isLoading === false">Loading...</h2>
+
+            <i class="material-icons field-uploaded-close change-profile-photo profile-photo-close"
+               role="button"
+               title="Delete Field"
+               (click)="deleteProfilePhoto()">
+              close
+            </i>
+            <div class="change-profile-photo profile-photo-label">Change Profile Photo</div>
+          </label>
+
+          <h3 class="user-personal-name align-center">{{userNames?.userName}}</h3>
+
+          <h5 class="user-business-name align-center">{{userNames?.businessName}}</h5>
+
+
+          <!--Conditional video links-->
+          <div class="mt-24"
+               [hidden]="isSelectedRole(WorkerRoleEnum.VIDEOGRAPHER) !== true && isSelectedRole(WorkerRoleEnum.VIDEO_EDITOR) !== true">
+            <label class="label mb-12">
+              <span class="top-label">showcase your videos</span>
+              <zu-tooltip-group [message]="videoLinksInfoMessage"></zu-tooltip-group>
+              <br>Build your portfolio here (minimum 5 links)
+            </label>
+
+            <div formArrayName="videoLinks"
+                 *ngFor="let item of userProfileForm.get('videoLinks').controls; let index = index;"
+                 class="input-with-btn flex flex-align-center mb-12">
+
+              <input type="text" placeholder="URL" class="input input-profile-data  url-input-box inside-input-icon"
+                     formControlName="{{index}}" (blur)="isFieldsValid('videoLinks', index)" maxlength="255">
+              <i class="material-icons field-uploaded-close inside-input-icon"
+                 *ngIf="userProfileForm.get('videoLinks').controls.length > MIN_COUNT_OF_VIDEO_URLS" role="button" title="Delete Field"
+                 (click)="deleteVideoLinks(index)">
+                close
+              </i>
+            </div>
+
+            <div class="flex flex-justify-flex-end mt-24">
+              <button mat-raised-button class="add-more-button mt-12" (click)="addVideoLinks()"
+                      *ngIf="userProfileForm.get('videoLinks').controls.length < MAX_COUNT_OF_VIDEO_URLS">+ Add more
+              </button>
+            </div>
+          </div>
+
+          <div [hidden]="isSelectedRole(WorkerRoleEnum.PHOTOGRAPHER) !== true && isSelectedRole(WorkerRoleEnum.PHOTO_EDITOR) !== true">
+
+            <zu-drag-n-drop [files]="uploadedImages"
+                            [max]="MAX_COUNT_OF_UPLOADED_IMAGES"
+                            [maxFileSize]="5"
+                            [accepts]="acceptsOfImage"
+                            [url]="'/api/protected/image'"
+                            (onAddFile)="addUploadedImages()">
+
+              <label class="label mt-12 mb-12">
+                <span class="top-label">showcase your photos</span>
+                <br>Build your portfolio here (minimum 10 photos)
+              </label>
+
+              <ul class="list-unstyled">
+                <li *ngFor="let uploadedImage of uploadedImages; let index = index" class="mb-12">
+                  <zu-file-upload [data]="uploadedImage"
+                                  [index]="index"
+                                  [labelType]="'photo'"
+                                  [label]="'+ Add photo'"
+                                  [accepts]="acceptsOfImage"
+                                  (onChangeHandler)="uploadImage($event, index)"
+                                  (onDeleteImageHandler)="deleteImage(index)"></zu-file-upload>
+                </li>
+              </ul>
+
+              <div class="flex flex-justify-flex-end mt-24 mb-12">
+                <button mat-raised-button
+                        class="add-more-button"
+                        *ngIf="uploadedImages?.length < MAX_COUNT_OF_UPLOADED_IMAGES"
+                        (click)="addUploadedImages()">+ Add more
+                </button>
+              </div>
+
+            </zu-drag-n-drop>
+
+          </div>
+        </div>
+
+        <div class="flex-element main full-width-xs">
+
+          <!--Conditional admin comment-->
+          <zu-alert-message class="inline-block full-width" *ngIf="adminFeedback"
+                            [title]="messageLabel">
+            <p class="message-text">{{adminFeedback}}</p>
+          </zu-alert-message>
+
+          <!--Conditional edited profile info-->
+          <p class="message-text message-text__edit" *ngIf="user.status === userStatusEnum.EDITED">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="23"
+                 height="23"
+                 class="vertical-align-middle mr-2"
+                 viewBox="0 0 58 58">
+              <defs>
+                <path id="2rxua" d="M412 429a28 28 0 1 1 56 0 28 28 0 0 1-56 0z"/>
+                <path id="2rxub" d="M439 440a1 1 0 1 1 2 0 1 1 0 0 1-2 0z"/>
+                <path id="2rxuc" d="M439 419a1 1 0 0 1 2 0v16a1 1 0 0 1-2 0z"/>
+              </defs>
+              <g id="attention-icon">
+                <g transform="translate(-411 -400)">
+                  <g>
+                    <use fill="#fff" fill-opacity="0" stroke="#7A1A7D" stroke-miterlimit="50" stroke-width="2" xlink:href="#2rxua"/>
+                  </g>
+                  <g>
+                    <g>
+                      <g>
+                        <use fill="#7A1A7D" xlink:href="#2rxub"/>
+                      </g>
+                      <g>
+                        <use fill="#7A1A7D" xlink:href="#2rxuc"/>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+            Your Profile changes have been sent for Admin approval. This won’t take too long
+          </p>
+
+          <div [formGroup]="userProfileForm">
+            <label class="label" for="homeAddress">
+              <span class="top-label">list your home city / town</span>
+              <br>We'll tell you about jobs in this area
+            </label>
+            <input type="text" id="homeAddress" placeholder="Town / City" class="input input-profile-data full-width mt-12"
+                   zuGoogleAutocomplete [(ngModel)]="googleAutocompleteData" (setAddress)="getAddress($event)"
+                   formControlName="homeAddress" maxlength="255" [required]="true">
+          </div>
+
+          <label class="label mt-24">
+            <span class="top-label">what's your speciality? (tick all that apply)</span>
+          </label>
+
+          <div class="checkbox-wrapper full-width-xs">
+
+            <div class="check-box-flex-element">
+              <div class="full-width check-box-container flex-wrap mt-24">
+                <mat-checkbox class="checkbox-inner" (change)="toggleRole(WorkerRoleEnum.PHOTOGRAPHER, $event)"
+                              [checked]="isSelectedRole(WorkerRoleEnum.PHOTOGRAPHER)">Photographer
+                </mat-checkbox>
+              </div>
+
+              <div class="full-width  check-box-container mt-24">
+                <mat-checkbox class="checkbox-inner" (change)="toggleRole(WorkerRoleEnum.VIDEOGRAPHER, $event)"
+                              [checked]="isSelectedRole(WorkerRoleEnum.VIDEOGRAPHER)">Videographer
+                </mat-checkbox>
+              </div>
+
+              <div class="full-width  check-box-container mt-24">
+                <mat-checkbox class="checkbox-inner" (change)="toggleRole(WorkerRoleEnum.ASSISTANT, $event)"
+                              [checked]="isSelectedRole(WorkerRoleEnum.ASSISTANT)">Assistant
+                </mat-checkbox>
+              </div>
+            </div>
+
+            <div class="check-box-flex-element">
+
+              <div class="full-width  check-box-container mt-24">
+                <mat-checkbox class="checkbox-inner" (change)="toggleRole(WorkerRoleEnum.PHOTO_EDITOR, $event)"
+                              [checked]="isSelectedRole(WorkerRoleEnum.PHOTO_EDITOR)">Editor (Photos)
+                </mat-checkbox>
+              </div>
+
+              <div class="full-width  check-box-container mt-24">
+                <mat-checkbox class="checkbox-inner" (change)="toggleRole(WorkerRoleEnum.VIDEO_EDITOR, $event)"
+                              [checked]="isSelectedRole(WorkerRoleEnum.VIDEO_EDITOR)">Editor (Videos)
+                </mat-checkbox>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box mt-24">
+            <label class="label" for="userExperience">
+              <span class="top-label">years of experience</span>
+            </label>
+
+            <select type="text" id="userExperience"
+                    class="input input-profile-data mt-12 select"
+                    [(ngModel)]="profile.experience"
+                    required>
+              <!--<option [value]="null" [disabled]="true" [hidden]="true">Select years of experience</option>-->
+              <option *ngFor="let experienceItem of experienceList" [value]="experienceItem.key">{{experienceItem.label}}</option>
+            </select>
+            <svg width="10"
+                 height="5"
+                 viewBox="0 0 10 5" version="1.1" class="select-arrow">
+              <use xlink:href="#select-arrow"></use>
+            </svg>
+          </div>
+
+          <div [hidden]="isSelectedRole(WorkerRoleEnum.VIDEOGRAPHER) !== true && isSelectedRole(WorkerRoleEnum.PHOTOGRAPHER) !== true">
+            <label class="label mt-24">Do you hold a current drone operator’s licence for your country?</label>
+
+            <mat-radio-group class="mt-12 flex" [(ngModel)]="profile.isDroneOperatorLicense">
+              <mat-radio-button class="radio-box-element" [value]="true">Yes</mat-radio-button>
+              <mat-radio-button class="radio-box-element" [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+
+            <!--Certificate upload -->
+            <div class="full-width mt-24" [hidden]="profile.isDroneOperatorLicense !== true">
+              <label class="label mb-12">Please upload a copy of your certificate</label>
+
+              <zu-file-upload [data]="uploadedCertificate"
+                              [label]="'+ Add file'"
+                              [accepts]="acceptsOfCertificate"
+                              (onChangeHandler)="uploadCertificate($event)"
+                              (onDeleteImageHandler)="deleteCertificate()">
+              </zu-file-upload>
+            </div>
+          </div>
+
+          <div [formGroup]="userProfileForm" class="info-box">
+            <label class="label mt-24 mb-12">
+              <span class="top-label">show us more</span>
+              <zu-tooltip-group [message]="additionalLinksInfoMessage"></zu-tooltip-group>
+            </label>
+
+            <div formArrayName="additionalInfoLinks"
+                 *ngFor="let item of userProfileForm.get('additionalInfoLinks').controls; let index = index;"
+                 class="input-with-btn flex flex-align-center mb-12">
+
+              <input title="Additional info links {{index}}" type="text" class="input input-profile-data url-input-box inside-input-icon"
+                     formControlName="{{index}}" (blur)="isFieldsValid('additionalInfoLinks', index)" maxlength="255">
+              <i class="material-icons field-uploaded-close inside-input-icon"
+                 *ngIf="userProfileForm.get('additionalInfoLinks').controls.length > MIN_COUNT_OF_ADDITIONAL_LINKS" role="button"
+                 title="Delete Field" (click)="deleteAdditionalProfileResourcesLinks(index)">
+                close
+              </i>
+            </div>
+
+            <div class="flex flex-justify-flex-end mt-24">
+              <button mat-raised-button class="add-more-button push-right" (click)="addMoreProfileResources()"
+                      *ngIf="userProfileForm.get('additionalInfoLinks').controls.length < MAX_COUNT_OF_ADDITIONAL_LINKS">+ Add more
+              </button>
+            </div>
+          </div>
+
+          <label for="public-bio" class="label mt-24">
+            <span class="top-label">sell yourself</span><br>Tell us about who you are and what you do
+          </label>
+
+          <textarea id="public-bio"
+                    name="Public Bio"
+                    class="bio-textarea input full-width mt-12"
+                    [(ngModel)]="profile.publicBio" required maxlength="5000"></textarea>
+
+          <!--Equipment List-->
+          <label class="label mt-24 mb-12">
+            <span class="top-label">your equipment list</span>
+            <zu-tooltip-group [message]="equipmentInfoMessage"></zu-tooltip-group>
+          </label>
+
+          <zu-equipments class="mb-24" [list]="profile.equipment" (onChange)="setProfileEquipment($event)"></zu-equipments>
+
+          <!-- Submit -->
+          <button mat-raised-button
+                  class="button-primary push-right full-width-xs"
+                  [disabled]="saveProfileBtnDisabled"
+                  (click)="saveUserProfile()">Submit for approval
+          </button>
+
+          <button mat-raised-button
+                  *ngIf="user.status === userStatusEnum.NEW"
+                  class="button-primary push-right full-width-xs save-for-later-btn"
+                  [disabled]="saveProfileBtnDisabled"
+                  (click)="saveProfileForLater()">Save for later
+          </button>
+
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<zu-svg-icons></zu-svg-icons>

@@ -1,0 +1,276 @@
+<div class="spinner" [hidden]="!isSpinnerVisible"></div>
+
+<zu-header></zu-header>
+
+<zu-intro-header
+    [title]="setHeaderTitle()"
+    [subTitle]="setHeaderText()"
+    [background]="setHeaderBackground()"
+></zu-intro-header>
+
+<section class="flex main-height admin-page-backgroud">
+  <mat-card class="full-width">
+    <mat-card-content class="main-content-padding post-job-container container">
+
+      <!-- TODO move next block to component-->
+      <div [hidden]="activeStep === 1 && isJobReady === true"
+           class="flex flex-justify-space-between flex-wrap flex-align-stretch"
+           [formGroup]="postJobForm">
+
+        <div class="full-width-xs full-width">
+
+          <div class="info-box mb-24">
+            <label class="label" for="jobOwner">
+              <span class="top-label">post as...</span>
+              <br>Who is posting this job?
+            </label>
+
+            <select type="text"
+                    id="jobOwner"
+                    class="input input-profile-data mt-12 select select-with-names"
+                    formControlName="owner"
+                    [(ngModel)]="job.ownerType">
+              <option [value]="OwnerNameEnum.PERSONAL_NAME">{{profileNames?.personalName}}</option>
+              <option [value]="OwnerNameEnum.BUSINESS_NAME">{{profileNames?.businessName}}</option>
+            </select>
+
+            <svg width="10"
+                 height="5"
+                 viewBox="0 0 10 5" version="1.1" class="select-arrow">
+              <use xlink:href="#select-arrow"></use>
+            </svg>
+          </div>
+
+          <label class="label" for="jobTitle">
+            <span class="top-label">job title</span>
+            <br>Create a name for your job
+          </label>
+          <input type="text" id="jobTitle" placeholder="Title" class="input input-profile-data full-width mt-12" maxlength="255"
+                 formControlName="title" [(ngModel)]="job.title">
+
+          <label for="job-description" class="label mt-24 mb-12">
+            <span class="top-label">JOB BRIEF</span><br>Be specific about your shoot requirements and expectations
+          </label>
+
+          <zu-textarea>
+            <textarea id="job-description"
+                      name="Public Bio"
+                      class="bio-textarea input full-width textarea"
+                      [attr.maxlength]="maxBriefLength"
+                      formControlName="brief"
+                      [(ngModel)]="job.brief"></textarea>
+
+            <span [ngClass]="getBriefCounterStyle()">{{(getBriefWordsCount() || 0)}}/{{minBriefWords}}(Minimum of {{minBriefWords}} words required)</span>
+          </zu-textarea>
+
+          <label class="label mt-24" for="jobLocation">
+            <span class="top-label">location of job</span>
+            <br>Professionals in this area will be notified of your job post
+          </label>
+          <input type="text"
+                 id="jobLocation"
+                 placeholder="Town / City"
+                 class="input input-profile-data full-width mt-12"
+                 formControlName="location"
+                 zuGoogleAutocomplete
+                 (setAddress)="getAddress($event)"
+                 maxlength="255">
+
+          <div class="flex flex-wrap flex-justify-space-between">
+
+            <!--TODO FIX STYLES-->
+
+            <!-- DATE-->
+            <div class="full-width-xs" style="width: 275px">
+              <label class="label mt-24 mb-12">
+                <span class="top-label">DATE OF SHOOT</span>
+              </label>
+
+              <zu-datepicker [min]="minDate"
+                             [value]="job?.date"
+                             (onChange)="setJobDate($event)"
+                             [placeholder]="'Choose a date'"></zu-datepicker>
+            </div>
+
+            <!-- Hours-->
+            <div class="full-width-xs" style="width: 140px" *ngIf="isNumberOfHour()">
+              <label class="label mt-24 mb-12">
+                <span class="top-label">HOURS</span>
+              </label>
+
+              <zu-input [type]="'number'" [value]="job.numberOfHour" [step]="0.5" [min]="1" [max]="9999"
+                        (onChange)="setJobNumberOfHour($event)"></zu-input>
+            </div>
+
+            <!-- Price per hour-->
+            <div class="full-width-xs" style="width: 140px" *ngIf="isPricePerHour()">
+              <label class="label mt-24 mb-12">
+                <span class="top-label">Price per hour</span>
+              </label>
+
+              <zu-input [type]="'currency'" [value]="job.pricePerHour" [step]="1" [min]="0" [max]="999999.99"
+                        (onChange)="setJobPricePerHour($event)"></zu-input>
+            </div>
+
+            <!-- Total amount -->
+            <div class="align-center align-self-end mt-24 full-width-xs" style="width: 120px">
+              <span class="currency-amount">{{calcTotalAmount() | currency: '$' }}</span>
+              <br>
+              <label class="label">TOTAL</label>
+            </div>
+          </div>
+
+          <label class="label mt-24 mb-12">
+            <span class="top-label">job type</span>
+          </label>
+          <div class="check-box-container flex flex-wrap">
+            <div class="flex-wrap check-box-container__element">
+              <mat-checkbox class="checkbox-inner check-box-row__element" (change)="toggleType(JobTypeEnum.PHOTOGRAPHER, $event)"
+                            [checked]="isSelectedType(JobTypeEnum.PHOTOGRAPHER)">
+                Photographer
+              </mat-checkbox>
+            </div>
+            <div class="flex-wrap check-box-container__element">
+              <mat-checkbox class="checkbox-inner check-box-row__element" (change)="toggleType(JobTypeEnum.VIDEOGRAPHER, $event)"
+                            [checked]="isSelectedType(JobTypeEnum.VIDEOGRAPHER)">
+                Videographer
+              </mat-checkbox>
+            </div>
+            <div class="flex-wrap check-box-container__element">
+              <mat-checkbox class="checkbox-inner check-box-row__element" (change)="toggleType(JobTypeEnum.DRONE_OPERATOR, $event)"
+                            [checked]="isSelectedType(JobTypeEnum.DRONE_OPERATOR)">
+                Drone Operator
+              </mat-checkbox>
+            </div>
+            <div class="flex-wrap check-box-container__element">
+              <mat-checkbox class="checkbox-inner check-box-row__element" (change)="toggleType(JobTypeEnum.PHOTO_EDITOR, $event)"
+                            [checked]="isSelectedType(JobTypeEnum.PHOTO_EDITOR)">
+                Editor (Photos)
+              </mat-checkbox>
+            </div>
+            <div class="flex-wrap check-box-container__element">
+              <mat-checkbox class="checkbox-inner check-box-row__element" (change)="toggleType(JobTypeEnum.VIDEO_EDITOR, $event)"
+                            [checked]="isSelectedType(JobTypeEnum.VIDEO_EDITOR)">
+                Editor (Videos)
+              </mat-checkbox>
+            </div>
+            <div class="flex-wrap check-box-container__element">
+              <mat-checkbox class="checkbox-inner check-box-row__element" (change)="toggleType(JobTypeEnum.ASSISTANT, $event)"
+                            [checked]="isSelectedType(JobTypeEnum.ASSISTANT)">
+                Assistant
+              </mat-checkbox>
+            </div>
+          </div>
+
+          <!--Equipment List-->
+          <label class="label mt-24 mb-12">
+            <span class="top-label">equipment preference</span>
+            <br>
+            <span>List the preferred equipment for this job (e.g. Canon, Nikon etc.) Please separate each preference with a comma</span>
+          </label>
+
+          <zu-equipments class="mb-24" [(list)]="job.equipment" (onChange)="setJobEquipment($event)"></zu-equipments>
+
+          <!--attachments-->
+          <label class="label mt-24 mb-12">
+            <span class="top-label">upload attachments</span><br>
+            Contract addendum / schedule / additional brief information
+          </label>
+
+          <div class="mt-12 mb-12">
+            <button mat-raised-button class="add-more-button mt-12" (click)="addUploadedFiles()"
+                    *ngIf="uploadedFiles?.length < MAX_COUNT_OF_FILES">+ Add field
+            </button>
+          </div>
+
+          <ul class="list-unstyled">
+            <li *ngFor="let uploadedFile of uploadedFiles; let index = index" class="mb-12">
+              <zu-file-upload [data]="uploadedFile"
+                              [index]="index"
+                              [labelType]="'file'"
+                              [label]="'+ Upload file'"
+                              [accepts]="acceptsOfFile"
+                              (onChangeHandler)="uploadFile($event, index)"
+                              (onDeleteImageHandler)="deleteFile(index)"></zu-file-upload>
+            </li>
+          </ul>
+
+          <!--<div class="drag-n-drop-container mb-24">-->
+          <ng-container *ngIf="isDropZone">
+            <zu-drag-n-drop [files]="uploadedFiles"
+                            [maxFileSize]="MAX_FILE_SIZE"
+                            [max]="MAX_COUNT_OF_FILES"
+                            [accepts]="acceptsOfFile"
+                            [url]="'/api/protected/attachments'"
+                            [container]="true"
+                            (onAddFile)="addUploadedFiles()">
+            </zu-drag-n-drop>
+          </ng-container>
+          <!--</div>-->
+        </div>
+
+      </div>
+
+      <!-- Post Job Preview-->
+      <ng-container *ngIf="activeStep === 1  && isJobReady === true">
+        <zu-job-preview [job]="job" [profileNames]="profileNames" [attachments]="uploadedFiles"
+                        [totalAmount]="calcTotalAmount()"></zu-job-preview>
+
+        <h2 class="title-for-overview mt-24 mb-16">What happens now?</h2>
+
+        <div class="full-width container-summary main-content-padding">
+          <zu-post-job-explanation></zu-post-job-explanation>
+        </div>
+
+        <!-- Terms of use agreement checkbox -->
+        <div class="spacer-24">
+          <mat-checkbox id="termsOfUse" (change)="acceptTerms($event)" *ngIf="isMobile() === false">
+            <label for="termsOfUse">I agree to Shootzu's </label>
+            <a class="link-for-terms"
+               type="application/pdf"
+               target="_blank"
+               href="https://s3-ap-southeast-2.amazonaws.com/shootzustorage/1.2+Shootzu+Membership+Terms+231218+-+preview.pdf">Terms and
+                                                                                                                               Conditions</a>
+            <label for="termsOfUse">, which
+                                    includes the </label>
+            <a class="link-for-terms"
+               type="application/pdf"
+               target="_blank"
+               href="https://s3-ap-southeast-2.amazonaws.com/shootzustorage/1.2+Shootzu+Membership+Terms+231218+-+preview.pdf">Crew
+                                                                                                                               agreement</a>
+          </mat-checkbox>
+
+
+          <mat-checkbox id="termsOfUseMobile" (change)="acceptTerms($event)" *ngIf="isMobile() === true">
+            <label for="termsOfUseMobile">I agree to Shootzu's </label>
+            <a class="link-for-terms"
+               type="application/pdf"
+               (click)="openTermsOfUse('https://s3-ap-southeast-2.amazonaws.com/shootzustorage/1.2+Shootzu+Membership+Terms+231218+-+preview.pdf')">Terms
+                                                                                                                                                    and
+                                                                                                                                                    Conditions</a>
+            <label for="termsOfUseMobile">, which
+                                          includes the </label>
+            <a class="link-for-terms"
+               type="application/pdf"
+               (click)="openTermsOfUse('https://s3-ap-southeast-2.amazonaws.com/shootzustorage/1.2+Shootzu+Membership+Terms+231218+-+preview.pdf')">Crew
+                                                                                                                                                    agreement</a>
+          </mat-checkbox>
+        </div>
+      </ng-container>
+
+      <!-- Post Job Preview-->
+      <zu-post-job-controls class="push-right full-width-xs"
+                            (onBack)="backToEdit()"
+                            (onNext)="goToPreview()"
+                            (onSubmit)="postJob()"
+                            [step]="activeStep"
+                            [isTermsNotAccepted]="isTermsNotAccepted"
+                            [isRequestInProgress]="isRequestInProgress">
+      </zu-post-job-controls>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<zu-svg-icons></zu-svg-icons>
+
+

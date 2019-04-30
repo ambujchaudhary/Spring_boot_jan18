@@ -1,0 +1,45 @@
+<div class="application-modal">
+
+  <i class="flex flex-justify-space-center flex-wrap mt-12 mb-24">
+    <img src="../../../../assets/images/job-icons/success.svg" alt="success">
+  </i>
+
+  <h1 class="align-center">Application Sent</h1>
+  <label class="label align-center second-header">Thank you! Your application has been submitted.</label>
+
+  <div class="application-model-content">
+    <p class="application-modal-info">
+      At this point, businesses can look through your profile and contact you directly if they have any further questions.
+    </p>
+    <p class="application-modal-info">
+      <span class="bold tip">TIP: </span>Make sure
+      <a routerLink="{{getProfileRedirectUrl()}}" [queryParams]="{fromModal: jobId}" class="link-default blue" target="_blank" *ngIf="isMobile() === false">your profile</a>
+      <a [routerLink]="getProfileRedirectUrl()" [queryParams]="{fromModal: jobId}" class="link-default blue" *ngIf="isMobile() === true" (click)="closeDialog()">your profile</a>
+                                         is up to date, displaying your best work with information about yourself.
+    </p>
+    <p class="application-modal-info">
+      If you are the successful applicant, you will receive an official offer from the business which will require your
+      prompt acceptance within 48 hours of being received.
+    </p>
+    <p class="application-modal-info">
+      If you are unsuccessful, the job will automatically move to the Archived Jobs tab with no notification.
+    </p>
+    <p class="application-modal-info">
+      You can check the status of your applications in the
+      <a [routerLink]="['/find-job']" [queryParams]="{tab: 'my'}" class="link-default blue" target="_blank" *ngIf="isMobile() === false">My
+                                                                                                                                         Applications
+                                                                                                                                         tab.</a>
+
+      <a [routerLink]="['/find-job']"
+         [queryParams]="{tab: 'my'}"
+         (click)="closeDialog()"
+         class="link-default blue"
+         *ngIf="isMobile() === true">My Applications tab.</a>
+    </p>
+  </div>
+
+  <div class="flex flex-justify-space-center flex-wrap mt-24">
+    <button class="button-small button-small--info align-center" matDialogClose>DONE</button>
+  </div>
+
+</div>

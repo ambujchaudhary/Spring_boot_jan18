@@ -1,0 +1,51 @@
+<section class="main-height flex flex-justify-space-center flex-align-center flex-wrap public-page-backgroud">
+  <mat-card>
+    <mat-card-content class="main-content-padding">
+
+      <!--Page logo-->
+      <div class="logo-container">
+
+        <!--LOGO HORIZONTAL-->
+        <svg class="logo-horizontal hide-xs" width="471px" height="139px" viewBox="0 0 610 156">
+          <use xlink:href="#logo-horizontal-white"></use>
+        </svg>
+
+        <!--LOGO VERTICAL WHITE COMPLEX-->
+        <svg class="logo-complex" width="231px" height="124px" viewBox="0 0 231 124">
+          <use xlink:href="#logo-vertical-white-complex"></use>
+        </svg>
+
+      </div>
+
+      <!--Restore password form-->
+      <div class="flex flex-align-center flex-wrap flex-justify-space-arround">
+
+        <div class="full-width-xs">
+          <h1 class="title-right">Forgot Your Password?</h1>
+        </div>
+
+        <!--Vertical line ceparator-->
+        <div class="vertical-line-block hide-xs"></div>
+
+        <div class="full-width-xs">
+          <form [formGroup]="forgotPasswordForm" novalidate (submit)="sendRestorationEmail()">
+            <div class="full-width mb-12">
+              <input type="text" required formControlName="email" placeholder="E-mail" class="input-transparent login-field">
+            </div>
+
+            <div class="flex flex-direction-row flex-justify-space-between flex-wrap">
+              <button mat-raised-button type="button" class="back-btn btn full-width-xs forgot-btn" routerLink="/login">Back</button>
+
+              <button mat-raised-button type="submit" class="btn sign-in-btn full-width-xs forgot-btn" [disabled]="isRequestInProgress">SEND</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<zu-svg-icons></zu-svg-icons>

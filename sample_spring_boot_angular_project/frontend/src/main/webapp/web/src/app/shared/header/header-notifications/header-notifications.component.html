@@ -1,0 +1,54 @@
+<div class="notifications">
+
+  <button class="notifications-icon" [ngClass]="{'open': isPopupOpen}" #popuptoggle (click)="togglePopup()">
+    <i class="material-icons">
+      <img src="../../../../assets/images/header-icons/notification.svg" alt="notification">
+    </i>
+
+    <span class="budget notifications__budget" *ngIf="count > 0" [ngClass]="{'big': count > 9}">
+      {{count > 9 ? '9+': count}}
+    </span>
+  </button>
+
+  <div class="notifications-popup" #popup [hidden]="isPopupOpen === false">
+    <div class="notifications-popup__list--empty" *ngIf="!notifications.length" (click)="hidePopup()">You have no new notifications.</div>
+
+    <button class="full-width button--mark-all" *ngIf="notifications.length" (click)="markAllAsRead()">Mark all as read</button>
+
+    <ul class="notifications-popup__list list-unstyled" *ngIf="notifications.length">
+      <li class="notification-item" *ngFor="let notification of notifications;let index = index" (click)="$event.stopPropagation()">
+
+        <h5 class="notification-item__title">{{notification.title}}</h5>
+
+        <button type="button" aria-controls="mark as read" class="button--close" (click)="markAsRead(notification.id)"></button>
+
+        <p class="notification-item__message">
+          <ng-container *ngFor="let item of parsedNotificationMessages[index]">
+            <span *ngIf="item.isUrl === false">{{item.text}}</span>
+
+            <span *ngIf="item.isUrl === true">
+              {{item.textBefore}}
+
+              <a class="link-default blue"
+                 [routerLink]="item.url"
+                 *ngIf="checkForCodedUrl(notification.title) === false"
+                 (click)="markAsRead(notification.id);hidePopup();checkForReloadUrl(notification.title)">
+                {{item.text}}</a>
+
+             <a class="link-default blue"
+                [routerLink]="['/find-job']"
+                [queryParams]="{tab: 'archived'}"
+                *ngIf="checkForCodedUrl(notification.title) === true"
+                (click)="markAsRead(notification.id);hidePopup();">
+               {{item.text}}</a>
+            </span>
+          </ng-container>
+        </p>
+
+        <time class="notification-item__date">{{notification.eventDate | zuDate: 'short-month'}}</time>
+      </li>
+    </ul>
+
+    <a class="button--see-all" routerLink="/notifications" (click)="hidePopup()">SEE ALL</a>
+  </div>
+</div>

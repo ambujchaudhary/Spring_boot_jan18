@@ -1,0 +1,16 @@
+@import "../../../../assets/scss/variables";
+
+.account-blocked-title {
+  color:         $color-grey-5;
+  font-size:     32px;
+  font-family:   $font-sf-light;
+  text-align:    center;
+  margin-bottom: 42px;
+}
+
+.account-blocked-message {
+  color:       $color-grey-light;
+  font-size:   16px;
+  font-family: $font-sf-light;
+  text-align:  center;
+}

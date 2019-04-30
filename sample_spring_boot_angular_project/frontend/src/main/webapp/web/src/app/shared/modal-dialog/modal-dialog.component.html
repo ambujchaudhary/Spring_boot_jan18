@@ -1,0 +1,15 @@
+<h1 matDialogTitle class="mb-12 align-center">{{title}}</h1>
+
+<mat-dialog-content class="mb-24 align-center" *ngIf="date">
+  If you cancel now, you still have full access to your account <br> until the end of your billing cycle({{date | zuDate}})
+</mat-dialog-content>
+
+<mat-dialog-content class="mb-24 align-center">
+  {{description}}
+</mat-dialog-content>
+
+<mat-dialog-actions class="flex flex-justify-space-center flex-wrap mt-24">
+  <button class="button-small button-small--default mr-12 confirm-dialog-button" matDialogClose>{{rejectButtonText}}</button>
+  <button class="button-small button-small--{{buttonClass}} confirm-dialog-button" (click)="cancel()">{{actionButtonText}}</button>
+</mat-dialog-actions>
+

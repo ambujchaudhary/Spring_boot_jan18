@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Dual';
+  src:         url("../fonts/Dual-300.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'SF-Normal';
+  src:         url("../fonts/SF-Pro-Text-Regular.otf") format('opentype');
+}
+
+@font-face {
+  font-family: 'SF-Semibold';
+  src:         url("../fonts/SF-Pro-Text-Semibold.otf") format('opentype');
+}
+
+@font-face {
+  font-family: 'SF-Light';
+  src:         url("../fonts/SF-Pro-Text-Light.otf") format('opentype');
+}
+
+html, body {
+  font-family:     'Dual', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}

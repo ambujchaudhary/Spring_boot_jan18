@@ -1,0 +1,25 @@
+@import "../../../assets/scss/variables";
+
+.messages-wrapper {
+  padding-top:     80px;
+  display:         flex;
+  align-items:     center;
+  flex-wrap:       wrap;
+  justify-content: center;
+  background:      $color-white-lightest;
+
+  @media screen and (max-width: $xsMaxWidth) {
+    padding-top: 80px;
+  }
+}
+
+.chat-container {
+  width:  85vw;
+  height: 80vh;
+
+  @media screen and (max-width: $xsMaxWidth) {
+    height: 100%;
+    width:  90vw;
+    margin: 36px 0 92px 0;
+  }
+}

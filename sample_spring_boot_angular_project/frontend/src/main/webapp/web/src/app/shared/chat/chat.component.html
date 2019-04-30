@@ -1,0 +1,122 @@
+<div class="messages-container" *ngIf="jobList.length > 0">
+  <div class="messages-container__block block-jobs">
+    <h1 class="messages-container__jobs--title h2">Choose Job to Message</h1>
+
+    <ul class="list-unstyled chat-block__list">
+      <li class="pointer flex flex-align-center flex-justify-space-between chat-block__item"
+          *ngFor="let jobItem of jobList"
+          [ngClass]="{'active-item': selectedJobId === jobItem.id}"
+          (click)="selectJob(jobItem.id)">
+        <div class="block-title__wrap text-nowrap" [title]="jobItem.title">
+          <label class="label block-title block-title__job block-title__ellipsis">{{jobItem.title}}</label>
+          <zu-role-icons [roles]="jobItem.workerRoles"></zu-role-icons>
+        </div>
+
+        <span class="budget chat-budget" *ngIf="calcUnreadRecipient(jobItem.id) > 0">{{calcUnreadRecipient(jobItem.id)}}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="messages-container__block block-recipient">
+    <h2 class="messages-container__jobs--title">Recipient</h2>
+
+    <div class="flex flex-align-center flex-justify-space-center info-message-container"
+         *ngIf="isStringIdExist(selectedJobId) === false">
+      <h3 class="info-message">Choose job offer for messaging</h3>
+    </div>
+
+    <ul class="list-unstyled chat-block__list" *ngIf="isStringIdExist(selectedJobId)">
+      <li class="pointer flex flex-justify-space-between flex-align-center chat-block__item"
+          *ngFor="let recipientItem of recipientList[selectedJobId]"
+          (click)="selectRecipient(recipientItem.userId)"
+          [ngClass]="{'active-item': selectedRecipientId === recipientItem.userId}">
+        <div class="flex flex-align-center recipient-wrap">
+          <img class="chat__user-avatar"
+               [alt]="recipientItem.firstName + ' ' +recipientItem.lastName"
+               [attr.src]="recipientItem.profilePhoto"/>
+          <div class="block-title__wrap text-nowrap" [title]="recipientItem.firstName + ' '+ recipientItem.lastName">
+            <label class="label block-title block-title__ellipsis text-nowrap">
+              {{recipientItem.firstName}} {{recipientItem.lastName}}
+            </label>
+          </div>
+        </div>
+
+        <span class="budget chat-budget" *ngIf="recipientItem.count?.length">{{recipientItem.count.length}}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="messages-container__block block-chat">
+    <h2 class="messages-container__jobs--title">{{getRecipientName(selectedJobId, selectedRecipientId)}}</h2>
+
+    <div class="block-chat__dialog">
+
+      <div class="flex flex-align-center flex-justify-space-center info-message-container__with-input"
+           *ngIf="isDialogSelected(selectedJobId, selectedRecipientId) === false && isStringIdExist(selectedJobId)">
+        <h3 class="info-message">Choose recipient for messaging</h3>
+      </div>
+
+      <ul class="list-unstyled"
+          *ngIf="isDialogSelected(selectedJobId, selectedRecipientId)"
+          #scrollMe
+          (click)="resetDialogUnreadMessage()"
+          (scroll)="resetDialogUnreadMessage()">
+        <li class="pointer flex message-container"
+            *ngFor="let dialogItem of getDialogList(selectedJobId, selectedRecipientId); let last = last; let index = index">
+
+          <!--Date of message info labels-->
+          <div class="message-container__status-container" *ngIf="isDateDifferent(index, dialogItem.date)">
+            <span class="message-status-label">{{dialogItem.date | zuDate: 'short-month'}}</span>
+          </div>
+
+          <!--Unread messages info labels-->
+          <div class="message-container__status-container" *ngIf="dialogUndreadMessage === dialogItem.id">
+            <span class="message-status-label">Unread Messages</span>
+          </div>
+
+          <div class="flex flex-align-center message" [ngClass]="setMessageClass(dialogItem)">
+            <div class="message__scroll-to"
+                 *ngIf="isMobile === false && dialogUndreadMessage === dialogItem.id || (last && !dialogUndreadMessage) || (last && dialogUndreadMessage && isNewUnread)"
+                 #lastChatElement>
+              {{scrollDialogToBottom(lastChatElement, dialogItem.id)}}
+            </div>
+
+            <div class="message__scroll-to"
+                 *ngIf="isMobile === true && last || (last && dialogUndreadMessage)"
+                 #lastChatElement>
+              {{scrollDialogToBottom(lastChatElement, dialogItem.id)}}
+            </div>
+
+            <p class="text-message">{{dialogItem.text}}</p>
+            <time class="text-message__date">{{dialogItem.sentDate | zuDate: 'hours-minutes'}}</time>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+
+    <div class="block-chat__dialog--input-block">
+      <form (submit)="sendMessage();resetDialogUnreadMessage()">
+        <input type="text"
+               class="input block-chat__dialog--input-block__field"
+               placeholder="Type your message..."
+               name="chat-message-input"
+               autocomplete="off"
+               [(ngModel)]="messageInput"
+               (focus)="markAllAsRead(selectedJobId, selectedRecipientId);resetDialogUnreadMessage()"
+               [disabled]="isDialogSelected(selectedJobId, selectedRecipientId) === false">
+
+        <button type="submit"
+                class="send-comment-icon"
+                [disabled]="isDialogSelected(selectedJobId, selectedRecipientId) === false">
+          <svg role="button" width="21px" height="18px" viewBox="0 0 21 18">
+            <use xlink:href="#send-icon"></use>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--Block appears when user has no messages-->
+<zu-empty-chat *ngIf="jobList.length === 0"></zu-empty-chat>

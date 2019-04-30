@@ -1,0 +1,13 @@
+@import "../../../../assets/scss/variables";
+
+.button-short {
+  font-family:   $font-sf-light;
+  min-width:     158px;
+  padding-left:  16px;
+  padding-right: 16px;
+}
+
+.message-text {
+  font-family: $font-sf-normal;
+  font-size:   16px;
+}

@@ -1,0 +1,24 @@
+@import "../../../../assets/scss/variables";
+
+.action-buttons-wrapper {
+  display:         flex;
+  justify-content: flex-end;
+
+  .action-buttons-box {
+    max-width: 100px;
+  }
+
+  .action-button {
+    &__block {
+      &:hover {
+        path {
+          fill: $color-blue-1;
+
+          &:last-child {
+            stroke: $color-blue-1;
+          }
+        }
+      }
+    }
+  }
+}

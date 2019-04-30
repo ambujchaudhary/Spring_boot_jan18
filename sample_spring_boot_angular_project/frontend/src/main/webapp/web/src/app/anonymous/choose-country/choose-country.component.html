@@ -1,0 +1,104 @@
+<section class="page choose-country__page-backgroud">
+  <mat-card class="choose-country__page-content"
+            [ngClass]="{
+            'choose-country__page-content--step-0': activeStep === 0,
+            'choose-country__page-content--step-2': activeStep === 2}">
+    <mat-card-content class="">
+
+      <!--Page logo-->
+      <div class="logo-container choose-country__logo-wrapper">
+        <svg class="logo-complex choose-country__logo" width="242px" height="131px" viewBox="0 0 242 131">
+          <use xlink:href="#logo-complex"></use>
+        </svg>
+
+      </div>
+
+      <div class="flex flex-align-center flex-wrap flex-justify-space-arround" *ngIf="activeStep === 0">
+        <div class="width-212">
+          <p class="choose-country__description">Select your country</p>
+
+          <form [formGroup]="subscribeForm" novalidate (submit)="checkSupportedCountry()">
+            <ul class="list-unstyled">
+              <li class="mb-24">
+                <input class="input autocomplete__input"
+                       placeholder=""
+                       aria-label="Country"
+                       [ngStyle]="{ 'background-image': getChosenCountryFlag()}"
+                       [matAutocomplete]="auto"
+                       [formControl]="countryInputCtrl">
+                <mat-autocomplete #auto="matAutocomplete"
+                                  class="autocomplete__list"
+                                  (closed)="autocompleteBlurHandler()"
+                                  (optionSelected)="selectCountry($event)">
+                  <mat-option *ngFor="let country of filteredCountries | async" [value]="country.label" class="autocomplete__option">
+                    <div [ngClass]="setFlag(country.code)"></div>
+                    <span>{{country.label}}</span>
+                  </mat-option>
+                </mat-autocomplete>
+              </li>
+              <li class="mt-36 mb-36">
+                <button type="submit" mat-raised-button color="primary" class="button-info width-212">Let's Go</button>
+              </li>
+            </ul>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="flex flex-align-center flex-wrap flex-justify-space-arround choose-country__description" *ngIf="activeStep === 1">
+        <p>Oops! We’re not quite ready for your country yet,<br>
+           but leave your details below and we will keep you updated</p>
+
+        <form [formGroup]="subscribeForm" novalidate (submit)="subscribe()">
+          <ul class="list-unstyled">
+            <li class="mb-24">
+              <input type="text"
+                     required
+                     formControlName="firstName"
+                     placeholder="First Name"
+                     class="input-blue name-field--blue"
+                     maxlength="40">
+            </li>
+            <li class="mb-24">
+              <input type="text"
+                     required
+                     formControlName="lastName"
+                     placeholder="Last Name"
+                     class="input-blue name-field--blue"
+                     maxlength="40">
+            </li>
+            <li class="mb-36">
+              <input type="email"
+                     required
+                     formControlName="email"
+                     placeholder="E-mail"
+                     class="input-blue mail-field"
+                     maxlength="254">
+            </li>
+            <li class="mb-36">
+              <button type="submit" mat-raised-button color="primary" class="button-info width-212 full-width-xs">Send</button>
+              <button type="button"
+                      mat-raised-button
+                      color="primary"
+                      class="button-info button-undo width-212 full-width-xs"
+                      (click)="goBack()">Back
+              </button>
+            </li>
+          </ul>
+        </form>
+      </div>
+
+      <div class="flex flex-align-center flex-wrap flex-justify-space-arround mt-36" *ngIf="activeStep === 2">
+        <div class="block-thank-you">
+          <h1 class="block-thank-you__title">Thank you!</h1>
+          <p class="block-thank-you__text">We will contact you as soon as Shootzu becomes available in your country</p>
+
+          <button class="button-info block-thank-you__button" (click)="resetStep()">DONE</button>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<zu-svg-icons></zu-svg-icons>

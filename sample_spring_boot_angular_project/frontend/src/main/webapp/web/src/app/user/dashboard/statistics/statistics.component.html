@@ -1,0 +1,78 @@
+<div class="statistics-wrapper" *ngIf="statisticsType === dashboardStatisticsTypeEnum.BE_CREW">
+  <div class="statistics-header">
+    <label class="label label-big">Be Crew Statistics</label>
+  </div>
+
+  <div class="flex flex-justify-space-arround flex-align-center flex-wrap">
+    <div class="statistics-info">
+      <label class="label label-statistics">Jobs Applied For</label>
+
+      <span class="statistics-number statistics-number__applied">{{statistics?.myApplications}}</span>
+
+      <label class="label statistics-info-label" *ngIf="statistics?.myApplications === 0">Haven't Applied Yet</label>
+      <a [routerLink]="['/find-job']" [queryParams]="{tab: 'my'}" class="link-default statistics-info-label blue" *ngIf="statistics?.myApplications !== 0">
+        My Applications</a>
+    </div>
+
+    <div class="vertical-line-separator hide-xs"></div>
+
+    <div class="statistics-info">
+      <label class="label label-statistics">Active Jobs</label>
+
+      <span class="statistics-number statistics-number__active">{{statistics?.activeJobs}}</span>
+
+      <label class="label statistics-info-label" *ngIf="statistics?.activeJobs === 0">No Active Jobs Yet</label>
+      <a class="link-default blue statistics-info-label" [routerLink]="['/find-job']" [queryParams]="{tab: 'active'}"
+         *ngIf="statistics?.activeJobs !== 0">View Details</a>
+    </div>
+  </div>
+</div>
+
+<div class="statistics-wrapper" *ngIf="statisticsType === dashboardStatisticsTypeEnum.FIND_CREW">
+  <div class="statistics-header">
+    <label class="label label-big">Find Crew Statistics</label>
+
+    <a [routerLink]="['/job']" class="link-default statistics-info-label">
+      <span class="label-default">Create Job Offer</span>
+      <span class="label-xs">Post Job</span>
+
+      <svg class="job-offer-icon" width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs></defs>
+        <g id="Dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g transform="translate(-1254.000000, -505.000000)" fill="#4DA1FF" fill-rule="nonzero" id="Group-14">
+            <g transform="translate(69.000000, 122.000000)">
+              <g id="Group-11-Copy" transform="translate(639.000000, 361.000000)">
+                <g id="plus-box" transform="translate(546.000000, 22.000000)">
+                  <path d="M14,10 L10,10 L10,14 L8,14 L8,10 L4,10 L4,8 L8,8 L8,4 L10,4 L10,8 L14,8 L14,10 Z M16,0 L2,0 C0.89,0 0,0.89 0,2 L0,16 C0,17.1045695 0.8954305,18 2,18 L16,18 C17.1045695,18 18,17.1045695 18,16 L18,2 C18,0.89 17.1,0 16,0 Z"
+                        id="Shape"></path>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </a>
+  </div>
+
+  <div class="flex flex-justify-space-arround flex-align-center flex-wrap">
+    <div class="statistics-info">
+      <label class="label label-statistics">Pending Jobs</label>
+
+      <span class="statistics-number statistics-number__pending">{{statistics?.pendingJobs}}</span>
+
+      <label class="label statistics-info-label" *ngIf="statistics?.pendingJobs === 0">No Pending Jobs Yet</label>
+      <a class="link-default statistics-info-label blue" [routerLink]="['/jobs']" *ngIf="statistics?.pendingJobs !== 0">Pending Jobs</a>
+    </div>
+
+    <div class="vertical-line-separator hide-xs"></div>
+
+    <div class="statistics-info">
+      <label class="label label-statistics">Total Applicants</label>
+
+      <span class="statistics-number statistics-number__applicants">{{statistics?.totalApplicants}}</span>
+
+      <label class="label statistics-info-label" *ngIf="statistics?.totalApplicants === 0">No Applicants Yet</label>
+      <label class="label statistics-info-label" *ngIf="statistics?.totalApplicants !== 0">Applicants</label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1 @@
+alter table feedback add column feedback_type varchar(13) not null default 'AS_BUSINESS';

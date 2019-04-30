@@ -1,0 +1,74 @@
+@import "../../app.component";
+@import "../../../assets/scss/variables";
+
+.button-default {
+  color:      $color-white;
+  font-size:  18px;
+  background: $color-blue;
+  min-width:  158px;
+  width:      auto;
+}
+
+.label {
+  .font-regular {
+    font-family:    $font-sf-normal;
+    letter-spacing: -0.6px;
+  }
+}
+
+.abn-number-field {
+  background: rgba(0, 0, 0, 0.3) url('../../../assets/images/input-icons/abn-icon.svg') no-repeat 20px 50%;
+}
+
+.web-site-field {
+  background: rgba(0, 0, 0, 0.3) url('../../../assets/images/icon-web.svg') no-repeat 20px 50%;
+}
+
+.location-field {
+  background: rgba(0, 0, 0, 0.3) url('../../../assets/images/location-icon.svg') no-repeat 20px 50%;
+}
+
+.mat-radio-box__item {
+  padding: 0 20px 0 0;
+}
+
+.button-logout {
+  position:    absolute;
+  background:  #7A1A7D;
+  font-size:   12px;
+  display:     flex;
+  top:         40px;
+  right:       -40px;
+  line-height: 14px;
+  color:       white;
+  opacity:     1;
+  padding:     5px 7px;
+
+  &:hover {
+    background: $color-purple-darkest;
+  }
+
+  &.show-xs {
+    display: none;
+
+    @media screen and (max-width: $smMaxWidth) {
+      display:    flex;
+      text-align: center;
+      position:   static;
+      margin:     24px auto;
+    }
+  }
+}
+
+.text-white {
+  .label {
+    color: $color-white !important;
+  }
+}
+
+.text-black {
+  .label {
+    color: $color-black !important;
+  }
+}
+

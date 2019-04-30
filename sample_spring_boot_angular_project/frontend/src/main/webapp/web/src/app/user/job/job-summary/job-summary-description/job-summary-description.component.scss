@@ -1,0 +1,21 @@
+@import "../../../../../assets/scss/variables";
+
+.description-container {
+  flex:        1;
+  overflow:    hidden;
+  max-height:  80px;
+  font-family: $font-dual;
+  word-break:  break-word;
+
+  @media screen and (max-width: $smMaxWidth) {
+    overflow: scroll;
+  }
+}
+
+.applicants-wrapper {
+  margin-left: 24px;
+
+  @media screen and (max-width: $xsMaxWidth) {
+    margin-left: 12px;
+  }
+}

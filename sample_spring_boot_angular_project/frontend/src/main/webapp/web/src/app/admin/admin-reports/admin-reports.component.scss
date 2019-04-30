@@ -1,0 +1,75 @@
+@import "../../../assets/scss/core";
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+.admin-datepickers-wrapper {
+  display:         flex;
+  max-width:       400px;
+  justify-content: space-around;
+  flex-wrap:       wrap;
+  margin:          70px auto 0 !important;
+}
+
+.admin-datepicker {
+  @media screen and (max-width: $xsMaxWidth) {
+    min-width:     100% !important;
+    text-align:    center;
+    margin-bottom: 24px;
+  }
+}
+
+.reports-wrapper {
+  display:         flex;
+  justify-content: space-around;
+  align-items:     center;
+  background:      white;
+  flex-wrap:       wrap;
+  border-radius:   5px;
+  min-height:      300px;
+  margin-top:      24px;
+}
+
+.reports-info {
+  padding:    50px 0;
+  text-align: center;
+
+  .label-reports {
+    font-size:   18px;
+    font-family: $font-sf-normal;
+  }
+
+  .reports-number {
+    font-size:    56px;
+    margin:       0 19px 24px 0;
+    padding-left: 18px;
+    text-align:   left;
+    display:      inline-block;
+    font-family:  $font-sf-light;
+
+    &__created_jobs {
+      background: url("../../../assets/images/admin-reports-icons/bag-icon.svg") no-repeat;
+    }
+
+    &__users {
+      background: url("../../../assets/images/admin-reports-icons/users-icon.svg") no-repeat;
+    }
+
+    &__applicants {
+      background: url("../../../assets/images/admin-reports-icons/applicants-icon.svg") no-repeat;
+    }
+  }
+
+  @media screen and (max-width: $xsMaxWidth) {
+    min-width: 100% !important;
+  }
+}
+
+.reports-vertical-line-separator {
+  height:     44px;
+  width:      2px;
+  background: $color-grey-dark-1;
+
+  @media screen and (max-width: $xsMaxWidth) {
+    display: none !important;
+  }
+}

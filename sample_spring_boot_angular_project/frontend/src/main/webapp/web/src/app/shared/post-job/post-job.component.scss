@@ -1,0 +1,43 @@
+@import "../../../assets/scss/core";
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+
+.check-box-container {
+  max-width: 700px;
+}
+
+.check-box-row__element {
+  padding: 0 !important;
+}
+
+.check-box-container__element {
+  margin: 0 40px 30px 0;
+}
+
+.select-with-names {
+  @media screen and (min-width: $xsMaxWidth) {
+    min-width: 328px;
+  }
+}
+
+.add-more-fields {
+  color:   $color-blue;
+  padding: 5px 5px 5px 0;
+
+  &:hover {
+    color: $color-blue-medium;
+  }
+}
+
+.link-for-terms {
+  color:           $color-blue;
+  text-decoration: underline;
+}
+
+.red {
+  color: $color-coral-1;
+}
+
+.green {
+  color: $color-green;
+}

@@ -1,0 +1,16 @@
+@import "../../../assets/scss/core";
+
+.flex-container {
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  flex-wrap:       wrap;
+}
+
+.button-reload {
+  color:       $color-white;
+  font-family: $font-sf-light;
+  font-size:   18px;
+  background:  $color-blue;
+  max-width:   228px;
+}

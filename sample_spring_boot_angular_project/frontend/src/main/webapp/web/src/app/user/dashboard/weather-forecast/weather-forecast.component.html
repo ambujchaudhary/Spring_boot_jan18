@@ -1,0 +1,18 @@
+<ul class="list-unstyled weather-wrapper">
+  <li class="daily-weather" *ngFor="let forecast of weather?.forecast; let index = index">
+    <div class="weather-status-icon" [ngClass]="setWeatherIcon(forecast.icon)"></div>
+
+    <div class="weather-info">
+      <div class="location-weather-block">
+        <a href="https://darksky.net/poweredby/" target="_blank" class="location-weather-block__label dark-sky-link">Powered by
+          <span class="underline">Dark Sky</span></a>
+
+        <span class="location-weather-block__label" title="{{weather.address}}">{{weather.address}}</span>
+
+        <span class="date-label">{{forecast.forecastDate | zuDate: getCorrectPipe(index)}}</span>
+      </div>
+
+      <span class="temperature-label">{{forecast.temperature}}&deg;</span>
+    </div>
+  </li>
+</ul>

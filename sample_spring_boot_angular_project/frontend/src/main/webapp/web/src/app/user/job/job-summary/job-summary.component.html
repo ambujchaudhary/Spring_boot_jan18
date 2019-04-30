@@ -1,0 +1,30 @@
+<div class="job-info-box"
+     [routerLink]="['/job', job.id, 'view']"
+     [ngClass]="{active: active}">
+
+  <zu-job-summary-date [date]="job.date"
+                       [daysToExpire]="calcDaysToExpire()"
+                       [status]="job.status"
+                       [ownershipType]="job.ownershipType"
+                       class="align-self-center full-width-xs mb-12"></zu-job-summary-date>
+
+  <div class="vertical-line-block vertical-line-block-for-job align-self-center hide-xs"></div>
+
+  <div class="job-header-box">
+    <zu-job-summary-header [job]="job"></zu-job-summary-header>
+
+    <zu-role-icons [roles]="job.workerRoles"></zu-role-icons>
+
+    <zu-job-summary-description [id]="job.id"
+                                [description]="job.brief"
+                                [hideApplicants]="hideApplicants"
+                                [applicants]="job.applicants"></zu-job-summary-description>
+
+    <zu-job-summary-footer [job]="job"
+                           [amount]="calcTotal()"
+                           [askQuestion]="askQuestion"
+                           [ownerActiveJobButtons]="ownerActiveJobButtons">
+    </zu-job-summary-footer>
+  </div>
+
+</div>
