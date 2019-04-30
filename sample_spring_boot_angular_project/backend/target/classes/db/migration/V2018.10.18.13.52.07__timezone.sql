@@ -1,2 +1,0 @@
-ALTER TABLE profile ADD timezone VARCHAR(255) NOT NULL;
-ALTER TABLE edited_profile ADD timezone VARCHAR(255) NOT NULL;

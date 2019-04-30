@@ -1,1 +1,0 @@
-ALTER TABLE notification ADD link varchar(100) DEFAULT '' NULL;

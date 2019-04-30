@@ -1,1 +1,0 @@
-alter table subscription add subscription_failed date null;

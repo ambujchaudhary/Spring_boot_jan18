@@ -1,1 +1,0 @@
-alter table job add applicants int default 0;

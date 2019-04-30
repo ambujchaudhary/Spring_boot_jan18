@@ -1,1 +1,0 @@
-alter table business_profile modify column abn char(11) not null;
