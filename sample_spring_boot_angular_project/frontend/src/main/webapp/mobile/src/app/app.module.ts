@@ -40,12 +40,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { Firebase } from '@ionic-native/firebase/ngx';
 
 const config = {
-  apiKey: 'AIzaSyAILqAvHn_m4MfbRiOQjnBi43uY5FDK8e8',
-  authDomain: 'shootzu-45853.firebaseapp.com',
-  databaseURL: 'https://shootzu-45853.firebaseio.com',
-  projectId: 'shootzu-45853',
-  storageBucket: 'shootzu-45853.appspot.com',
-  messagingSenderId: '404139733949'
+  
 };
 
 @NgModule({
