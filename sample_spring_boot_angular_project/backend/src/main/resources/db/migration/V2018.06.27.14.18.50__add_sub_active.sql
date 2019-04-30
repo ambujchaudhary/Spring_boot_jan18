@@ -1,1 +1,0 @@
-alter table subscription add active bit not null default false;

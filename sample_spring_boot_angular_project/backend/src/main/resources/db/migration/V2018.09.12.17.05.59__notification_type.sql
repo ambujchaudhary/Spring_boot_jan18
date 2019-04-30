@@ -1,1 +1,0 @@
-ALTER TABLE notification ADD notification_type VARCHAR(30) NULL;

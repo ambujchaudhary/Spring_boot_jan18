@@ -1,1 +1,0 @@
-// Use karma.config form frontend/src/main/src

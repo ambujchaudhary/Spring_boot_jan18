@@ -1,1 +1,0 @@
-ALTER TABLE subscription DROP description;

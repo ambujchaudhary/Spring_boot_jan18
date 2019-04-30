@@ -1,1 +1,0 @@
-alter table job add column last_action date default '2018-09-10';

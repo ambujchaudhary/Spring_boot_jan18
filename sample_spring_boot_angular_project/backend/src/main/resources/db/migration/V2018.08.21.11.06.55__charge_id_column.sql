@@ -1,1 +1,0 @@
-ALTER TABLE offer ADD charge_id VARCHAR(30) NOT NULL;

@@ -1,1 +1,0 @@
-alter table job_applicant add column archive bit not null;
